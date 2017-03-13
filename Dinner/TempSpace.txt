@@ -1,0 +1,12 @@
+﻿RestaurantType	American	
+BBQ	
+Chinese	
+Cuban	
+Delis	
+Fast Food	
+French	
+German	
+Italian	
+Japanese	
+Mediterranean	
+Mexican													

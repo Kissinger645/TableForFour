@@ -29,5 +29,9 @@ namespace Dinner.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<ImageUpload> ImageUploads { get; set; }
+
+        public System.Data.Entity.DbSet<Dinner.Models.Couple> Couples { get; set; }
     }
 }

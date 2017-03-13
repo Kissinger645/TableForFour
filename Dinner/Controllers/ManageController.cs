@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Dinner.Models;
+using System.IO;
 
 namespace Dinner.Controllers
 {
@@ -15,6 +16,7 @@ namespace Dinner.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -24,6 +26,38 @@ namespace Dinner.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+
+        public ActionResult ProfilePic()
+        {
+            return View();
+        }
+
+        public ActionResult Upload()
+        {
+            var uploadViewModel = new ImageUploadViewModel();
+            return View(uploadViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Upload(ImageUploadViewModel formData)
+        {
+            var uploadedFile = Request.Files[0];
+            string filename = $"{DateTime.Now.Ticks}{uploadedFile.FileName}";
+            var serverPath = Server.MapPath(@"~\Uploads");
+            var fullPath = Path.Combine(serverPath, filename);
+            uploadedFile.SaveAs(fullPath);
+
+            // ---------------------
+
+            var uploadModel = new ImageUpload
+            {
+                Caption = User.Identity.GetUserName(),
+                File = filename
+            };
+            db.ImageUploads.Add(uploadModel);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ApplicationSignInManager SignInManager
@@ -54,6 +88,9 @@ namespace Dinner.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            var userName = User.Identity.GetUserName();
+            var pic = db.ImageUploads.Where(u => u.Caption == userName).OrderByDescending(u => u.Id).FirstOrDefault();
+            ViewBag.ProfilePic = pic.FilePath;
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."

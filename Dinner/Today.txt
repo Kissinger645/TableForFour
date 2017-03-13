@@ -1,0 +1,9 @@
+﻿App running, models setup and database ready. DUE: 3/14/17
+Couple Model 
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
+https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure
+==Login with Facebook
+==Login with Google
+Login with Twitter
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/external-authentication-services#TWITTER
+==Remove Secrets before uploading to GH, maybe exclude from GH 
