@@ -7,14 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dinner.Models;
-using Microsoft.AspNet.Identity;
 using System.IO;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity.Migrations;
 
 namespace Dinner.Controllers
 {
     public class CoupleController : Controller
     {
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Couple
@@ -23,7 +23,35 @@ namespace Dinner.Controllers
             return View(db.Couples.ToList());
         }
 
-        
+        public ActionResult ProfilePic()
+        {
+            return View();
+        }
+
+        public ActionResult Upload()
+        {
+            var uploadViewModel = new ImageUploadViewModel();
+            return View(uploadViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Upload(ImageUploadViewModel formData)
+        {
+            var uploadedFile = Request.Files[0];
+            string filename = $"{DateTime.Now.Ticks}{uploadedFile.FileName}";
+            var serverPath = Server.MapPath(@"~\Uploads");
+            var fullPath = Path.Combine(serverPath, filename);
+            uploadedFile.SaveAs(fullPath);
+
+            var uploadModel = new ImageUpload
+            {
+                Caption = User.Identity.GetUserName(),
+                File = filename
+            };
+            db.ImageUploads.Add(uploadModel);
+            db.SaveChanges();
+            return RedirectToAction("Browse", "Home");
+        }
 
         // GET: Couple/Details/5
         public ActionResult Details(int? id)
@@ -41,7 +69,7 @@ namespace Dinner.Controllers
         }
 
         // GET: Couple/Create
-        public ActionResult Create()
+        public ActionResult AboutUs()
         {
             return View();
         }
@@ -51,13 +79,15 @@ namespace Dinner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,ZipCode,Phone")] Couple couple)
+        public ActionResult AboutUs([Bind(Include = "Id,NickName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
         {
+            var user = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
+                couple.CurrentUser = user;
                 db.Couples.Add(couple);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ProfilePic", "Couple");
             }
 
             return View(couple);
@@ -83,7 +113,7 @@ namespace Dinner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,ZipCode,Phone")] Couple couple)
+        public ActionResult Edit([Bind(Include = "Id,NickName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
         {
             if (ModelState.IsValid)
             {

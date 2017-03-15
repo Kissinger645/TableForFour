@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "ProfilePic";
+}
+
+<div class="container" style="margin: auto; width: 50%;">
+    <h3>Change Profile Pic</h3>
+    @using (Html.BeginForm("Upload", "Couple", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>
+            <input type="file" name="File" class="form-control" />
+            <input type="submit" value="Set Profile Pic" class="btn btn-link" />
+        </p>
+    }
+</div>

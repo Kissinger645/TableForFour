@@ -7,3 +7,7 @@ https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/best-prac
 Login with Twitter
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/external-authentication-services#TWITTER
 ==Remove Secrets before uploading to GH, maybe exclude from GH 
+
+Finish User Profile and add multiple users
+Page with Couple and Details
+Showing Couples that match preferences

@@ -1,26 +1,24 @@
 ﻿@model Dinner.Models.IndexViewModel
-@{
-    ViewBag.Title = "Manage Your Profile";
-}
-
-<h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>Account Settings</h4>
     <hr />
     <div class="col-md-3">
         <div class="photobox">
-            <img class="thumb" src="@ViewBag.ProfilePic" />
+            <img class="thumb" src="@ViewBag.ProfilePic" width="300" height="200"/>
         </div>
-        
+        @Html.ActionLink("Change your profile picture", "ProfilePic")
     </div>
+
+    
+
     <dl class="dl-horizontal">
-        <dt>Profile Picture:</dt>
-        <dd>[ @Html.ActionLink("Change your profile picture", "ProfilePic") ]</dd>
-        <dt>Zip Code:</dt>
+        <dt></dt>
         <dd></dd>
-        <dt>Favorite Foods:</dt>
+        <dt>Change our details:</dt>
+        <dd>[@Html.ActionLink("Details", "Edit", "Couple")]</dd>
+        <dt></dt>
         <dd></dd>
         <dt>Password:</dt>
         <dd>
