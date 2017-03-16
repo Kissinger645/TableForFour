@@ -28,22 +28,28 @@ namespace Dinner.Controllers
         {
             var otherCouple = db.Couples.Where(c => c.Id == id).FirstOrDefault().UserName;
             var us = User.Identity.GetUserName();
-            MatchedCouple match = new MatchedCouple
-            {
-                FirstCouple = us,
-                SecondCouple = otherCouple,
 
+            Likes like = new Likes
+            {
+                ThisCouple = us,
+                OtherCouple = otherCouple
             };
-            bool magic = db.Match.Where(c => c.FirstCouple == otherCouple && c.SecondCouple == us).Any();
+
+            bool magic = db.Like.Where(c => c.ThisCouple == otherCouple && c.OtherCouple == us).Any();
             if (magic == true)
             {
-                //Send message for match
-                ViewBag.Match = "Booyah!";
+                MatchedCouple match = new MatchedCouple
+                {
+                    FirstCouple = us,
+                    SecondCouple = otherCouple,
+                };
+                db.Match.Add(match);
             }
+
+            db.Like.Add(like);
+            db.SaveChanges();
             return View();
         }
-
-        
 
         [Route("c/{UserName}")]
         public ActionResult Info(string UserName)

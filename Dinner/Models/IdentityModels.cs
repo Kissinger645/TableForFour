@@ -33,5 +33,6 @@ namespace Dinner.Models
         public DbSet<ImageUpload> ImageUploads { get; set; }
         public DbSet<Couple> Couples { get; set; }
         public DbSet<MatchedCouple> Match { get; set; }
+        public DbSet<Likes> Like { get; set; }
     }
 }

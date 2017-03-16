@@ -264,11 +264,20 @@
     <Compile Include="Migrations\201703152015256_newname.Designer.cs">
       <DependentUpon>201703152015256_newname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703160925597_addedLikes.cs" />
+    <Compile Include="Migrations\201703160925597_addedLikes.Designer.cs">
+      <DependentUpon>201703160925597_addedLikes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703160928171_addedDbSet.cs" />
+    <Compile Include="Migrations\201703160928171_addedDbSet.Designer.cs">
+      <DependentUpon>201703160928171_addedDbSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Couple.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageUpload.cs" />
+    <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MatchedCouple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -398,6 +407,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703152015256_newname.resx">
       <DependentUpon>201703152015256_newname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703160925597_addedLikes.resx">
+      <DependentUpon>201703160925597_addedLikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703160928171_addedDbSet.resx">
+      <DependentUpon>201703160928171_addedDbSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
