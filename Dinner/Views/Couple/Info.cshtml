@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+}
+
+<h3>@ViewBag.ThisCouple.UserName - 
+    <a href="@Url.Action("Like", "Couple", new { id = @ViewBag.ThisCouple.Id })">
+    <span class="glyphicon glyphicon-glyphicon-glass" aria-hidden="true"></span></a>
+</h3>
+
+<div class="container">
+    <div>
+        <div class="photobox">
+            <img class="thumb" src="@ViewBag.ThisCouple.Image.FilePath" width="600" height="400" />
+        </div>
+    </div>
+    <div>
+        <h3>About us...</h3>
+        <h5>@ViewBag.ThisCouple.Bio</h5>
+    </div>
+</div>

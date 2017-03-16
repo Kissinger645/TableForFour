@@ -20,7 +20,7 @@ namespace Dinner.Controllers
         public ActionResult Browse()
         {
             ViewBag.AllCouples = db.Couples.ToList();
-            ViewBag.Pics = db.ImageUploads.ToList();
+            
             return View();
         }
     }

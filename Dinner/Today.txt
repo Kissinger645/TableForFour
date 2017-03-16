@@ -7,7 +7,11 @@ https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/best-prac
 Login with Twitter
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/external-authentication-services#TWITTER
 ==Remove Secrets before uploading to GH, maybe exclude from GH 
+==Page with Couple and Details
+==Like another Couple
+==Set ProfilePic to Image
+==Direct user to profile page upon registration 
 
-Finish User Profile and add multiple users
-Page with Couple and Details
+Finish User Profile Add Checkbox for Ages and Food
 Showing Couples that match preferences
+Show Message when connection is made

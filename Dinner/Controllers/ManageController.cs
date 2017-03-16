@@ -90,7 +90,15 @@ namespace Dinner.Controllers
         {
             var userName = User.Identity.GetUserName();
             var pic = db.ImageUploads.Where(u => u.Caption == userName).OrderByDescending(u => u.Id).FirstOrDefault();
-            ViewBag.ProfilePic = pic.FilePath;
+            if (pic == null)
+            {
+                ViewBag.ProfilePic = "https://localhost:44327/Uploads/default.jpg";
+            }
+            else
+            {
+                ViewBag.ProfilePic = pic.FilePath;
+            }
+            
             ViewBag.UserId = User.Identity.GetUserId();
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."

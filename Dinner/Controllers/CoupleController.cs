@@ -10,6 +10,7 @@ using Dinner.Models;
 using System.IO;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Migrations;
+using System.Text.RegularExpressions;
 
 namespace Dinner.Controllers
 {
@@ -21,6 +22,35 @@ namespace Dinner.Controllers
         public ActionResult Index()
         {
             return View(db.Couples.ToList());
+        }
+
+        public ActionResult Like(int id)
+        {
+            var otherCouple = db.Couples.Where(c => c.Id == id).FirstOrDefault().UserName;
+            var us = User.Identity.GetUserName();
+            MatchedCouple match = new MatchedCouple
+            {
+                FirstCouple = us,
+                SecondCouple = otherCouple,
+
+            };
+            bool magic = db.Match.Where(c => c.FirstCouple == otherCouple && c.SecondCouple == us).Any();
+            if (magic == true)
+            {
+                //Send message for match
+                ViewBag.Match = "Booyah!";
+            }
+            return View();
+        }
+
+        
+
+        [Route("c/{UserName}")]
+        public ActionResult Info(string UserName)
+        {
+            var UN = UserName;
+            ViewBag.ThisCouple = db.Couples.Where(c => c.UserName == UN).FirstOrDefault();
+            return View();
         }
 
         public ActionResult ProfilePic()
@@ -37,6 +67,8 @@ namespace Dinner.Controllers
         [HttpPost]
         public ActionResult Upload(ImageUploadViewModel formData)
         {
+            var theseGuys = User.Identity.GetUserName();
+            var thisCouple = User.Identity.GetUserId();
             var uploadedFile = Request.Files[0];
             string filename = $"{DateTime.Now.Ticks}{uploadedFile.FileName}";
             var serverPath = Server.MapPath(@"~\Uploads");
@@ -45,9 +77,11 @@ namespace Dinner.Controllers
 
             var uploadModel = new ImageUpload
             {
-                Caption = User.Identity.GetUserName(),
+                Caption = theseGuys,
                 File = filename
             };
+            var currentUser = db.Couples.Where(c => c.CurrentUser == thisCouple).FirstOrDefault();
+            currentUser.ProfilePic = uploadModel.Id;
             db.ImageUploads.Add(uploadModel);
             db.SaveChanges();
             return RedirectToAction("Browse", "Home");
@@ -68,7 +102,7 @@ namespace Dinner.Controllers
             return View(couple);
         }
 
-        // GET: Couple/Create
+        // GET: Couple/AboutUs
         public ActionResult AboutUs()
         {
             return View();
@@ -79,12 +113,14 @@ namespace Dinner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AboutUs([Bind(Include = "Id,NickName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
+        public ActionResult AboutUs([Bind(Include = "Id,UserName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
         {
             var user = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 couple.CurrentUser = user;
+                couple.ProfilePic = 6;
+                couple.UserName = User.Identity.GetUserName();
                 db.Couples.Add(couple);
                 db.SaveChanges();
                 return RedirectToAction("ProfilePic", "Couple");
@@ -113,7 +149,7 @@ namespace Dinner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NickName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
+        public ActionResult Edit([Bind(Include = "Id,UserName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
         {
             if (ModelState.IsValid)
             {

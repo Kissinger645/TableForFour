@@ -1,4 +1,6 @@
 ﻿Change the way the login looks, clarify FB login
+add custom exception error, employ try/catch
+
 show only certain ages or sexual preferencs
 delete account
 

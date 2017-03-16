@@ -16,8 +16,13 @@ namespace Dinner.Models
         [ForeignKey("CurrentUser")]
         public virtual ApplicationUser DbUser { get; set; }
 
-        public string NickName { get; set; }
+        public string UserName { get; set; }
         public string Bio { get; set; }
+
+        public int ProfilePic { get; set; }
+
+        [ForeignKey("ProfilePic")]
+        public virtual ImageUpload Image { get; set; }
 
         [Display(Name="Zip Code")]
         public int ZipCode { get; set; }

@@ -81,9 +81,8 @@ namespace Dinner.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "PhoneNumber")]
-        public string PhoneNumber { get; set; }
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
     }
 
