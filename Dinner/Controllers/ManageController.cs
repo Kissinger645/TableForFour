@@ -92,7 +92,7 @@ namespace Dinner.Controllers
             var pic = db.ImageUploads.Where(u => u.Caption == userName).OrderByDescending(u => u.Id).FirstOrDefault();
             if (pic == null)
             {
-                ViewBag.ProfilePic = "https://localhost:44327/Uploads/default.jpg";
+                ViewBag.ProfilePic = "~/Uploads/default.jpg";
             }
             else
             {
@@ -100,6 +100,7 @@ namespace Dinner.Controllers
             }
             
             ViewBag.UserId = User.Identity.GetUserId();
+            ViewBag.Couple = db.Couples.Where(c => c.UserName == userName).FirstOrDefault();
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."

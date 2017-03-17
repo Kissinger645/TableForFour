@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Matches";
+}
+<div>
+    <ul>
+        @foreach (var couple in ViewBag.Matches)
+        {
+            <li>@couple.First.UserName and @couple.Second.UserName</li>
+        }
+    </ul>
+</div>

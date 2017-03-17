@@ -1,5 +1,19 @@
-﻿App running, models setup and database ready. DUE: 3/14/17
-Couple Model 
+﻿usernames Couple1 email couple1@bk.com pass Pass!1
+
+Finish User Profile Add Checkbox for Ages and Food
+Showing Couples that match preferences
+Send Message when connection is made
+Show that you've already liked someone
+Add option to like everyone
+Add link to send message to matches
+https://www.mikesdotnetting.com/article/268/how-to-send-email-in-asp-net-mvc
+
+
+==Show message when a match is made
+==Add page to see all matches
+==Send back to profile from Like
+==App running, models setup and database ready. DUE: 3/14/17
+==Couple Model 
 https://docs.microsoft.com/en-us/aspnet/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
 https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure
 ==Login with Facebook
@@ -12,6 +26,3 @@ https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/external-authe
 ==Set ProfilePic to Image
 ==Direct user to profile page upon registration 
 
-Finish User Profile Add Checkbox for Ages and Food
-Showing Couples that match preferences
-Show Message when connection is made

@@ -24,10 +24,26 @@ namespace Dinner.Controllers
             return View(db.Couples.ToList());
         }
 
-        public ActionResult Like(int id)
+        public ActionResult Matches()
         {
-            var otherCouple = db.Couples.Where(c => c.Id == id).FirstOrDefault().UserName;
-            var us = User.Identity.GetUserName();
+            var id = User.Identity.GetUserId();
+            var matches = db.Match.Where(c => c.FirstCouple == id || 
+            c.SecondCouple == id).ToList();
+            if (matches == null)
+            {
+                ViewBag.Matches = "No matches yet.";
+            }
+            else
+            {
+                ViewBag.Matches = matches;
+            }
+            return View();
+        }
+        
+        public ActionResult Like(string id)
+        {
+            string otherCouple = db.Users.Where(c => c.UserName == id).FirstOrDefault().Id;
+            string us = User.Identity.GetUserId();
 
             Likes like = new Likes
             {
@@ -48,14 +64,37 @@ namespace Dinner.Controllers
 
             db.Like.Add(like);
             db.SaveChanges();
-            return View();
+            var last = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
+            return Redirect(last);
         }
 
         [Route("c/{UserName}")]
         public ActionResult Info(string UserName)
         {
-            var UN = UserName;
-            ViewBag.ThisCouple = db.Couples.Where(c => c.UserName == UN).FirstOrDefault();
+            string otherCouple = db.Users.Where(c => c.UserName == UserName).FirstOrDefault().Id;
+            string us = User.Identity.GetUserId();
+            bool liked = db.Like.Where(c => c.ThisCouple == us && c.OtherCouple == otherCouple).Any();
+            if (liked == true)
+            {
+                ViewBag.Liked = "*";
+            }
+            else
+            {
+                ViewBag.Liked = "";
+            }
+
+            bool magic = db.Match.Where(c => c.FirstCouple == otherCouple  && c.SecondCouple == us ||
+                 c.FirstCouple == us && c.SecondCouple == otherCouple).Any();
+            if (magic == true)
+            {
+                ViewBag.Match = "Ayyy! We did it. Let's do dinner!";
+            }
+            else
+            {
+                ViewBag.Match = "";
+            }
+
+            ViewBag.ThisCouple = db.Couples.Where(c => c.UserName == UserName).FirstOrDefault();
             return View();
         }
 
@@ -119,7 +158,7 @@ namespace Dinner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AboutUs([Bind(Include = "Id,UserName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
+        public ActionResult AboutUs([Bind(Include = "Id,UserName,CurrentUser,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
         {
             var user = User.Identity.GetUserId();
             if (ModelState.IsValid)
