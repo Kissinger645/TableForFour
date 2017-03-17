@@ -11,13 +11,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Couple</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.UserName)
         @Html.HiddenFor(model => model.CurrentUser)
-
+        @Html.HiddenFor(model => model.ProfilePic)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "control-label col-md-2" })

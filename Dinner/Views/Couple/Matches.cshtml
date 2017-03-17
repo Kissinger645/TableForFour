@@ -2,11 +2,16 @@
 @{
     ViewBag.Title = "Matches";
 }
-<div>
+<div class="container">
+
+    <h3>These are your matches.</h3> 
+    <h4>Use the links below to send them a message...</h4>
     <ul>
         @foreach (var couple in ViewBag.Matches)
         {
             <li>@couple.First.UserName and @couple.Second.UserName</li>
         }
     </ul>
+
+
 </div>

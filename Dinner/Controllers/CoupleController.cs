@@ -194,13 +194,13 @@ namespace Dinner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserName,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
+        public ActionResult Edit([Bind(Include = "Id,UserName,CurrentUser,ProfilePic,Bio,ZipCode,Phone,Age,Orientation,FavoriteFoods,AgePreference,SexualPreference,PricePreference")] Couple couple)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(couple).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Browse", "Home");
             }
             return View(couple);
         }
