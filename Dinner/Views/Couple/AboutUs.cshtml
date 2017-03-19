@@ -1,5 +1,5 @@
 ﻿@model Dinner.Models.Couple
-<div>
+<div class="container-fluid">
     <h4>About us...</h4>
 
     @using (Html.BeginForm())
@@ -12,7 +12,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Bio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Bio, new { htmlAttributes = new { @class = "form-control" }, rows = "8", cols = "50" })
                     @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -47,8 +47,8 @@
                        new SelectListItem { Value = "70+" , Text = "70+" },
                     },
                   new { @class = "myselect" })
-                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-</div>
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
             </div>
 
             <div class="form-group">
@@ -76,7 +76,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.AgePreference, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                   @Html.DropDownListFor(model => model.Age,
+                    @Html.DropDownListFor(model => model.Age,
                   new List<SelectListItem> {
                       new SelectListItem { Value = "0" , Text = " - - Age - - " },
                        new SelectListItem { Value = "20's" , Text = "20's" },
@@ -88,7 +88,7 @@
                        new SelectListItem { Value = "Everyone!" , Text = "Everyone!" }
                     },
                   new { @class = "myselect" })
-                @Html.ValidationMessageFor(model => model.AgePreference, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.AgePreference, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -119,8 +119,8 @@
                         new SelectListItem { Value = "$$$" , Text = "$$$" },
                     },
                     new { @class = "myselect" })
-                        @Html.ValidationMessageFor(model => model.PricePreference, "", new { @class = "text-danger" })
-</div>
+                    @Html.ValidationMessageFor(model => model.PricePreference, "", new { @class = "text-danger" })
+                </div>
             </div>
 
             <div class="form-group">

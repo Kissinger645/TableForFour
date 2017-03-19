@@ -1,4 +1,5 @@
 ﻿using Dinner.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace Dinner.Controllers
 
         public ActionResult Browse()
         {
-            ViewBag.AllCouples = db.Couples.ToList();
+            var userId = User.Identity.GetUserId();
+            var cCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
+            ViewBag.AllCouples = db.Couples.Where(c => c.Orientation == cCouple.SexualPreference).ToList();
             
             return View();
         }

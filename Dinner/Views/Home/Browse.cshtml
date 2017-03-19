@@ -1,9 +1,9 @@
-﻿<div class="container">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+﻿<div class="container-fluid">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 60%; height:auto; margin: 0 auto">
         <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox" style= width:100%; height: 500px !important;>
+        <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="~/Images/dinner-party-with-friends.jpg" alt="Chania"/>
+                <img src="~/Images/dinner-party-with-friends.jpg" alt="Table For Four"/>
             </div>
 
 
@@ -13,9 +13,9 @@
                     <a href="/c/@couple.UserName">
                         <img src="@couple.Image.FilePath" alt="@couple.UserName">
                     </a>
-                    
                 </div>
             }
+
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

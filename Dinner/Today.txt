@@ -2,13 +2,16 @@
 
 Finish User Profile Add Checkbox for Ages and Food
 Showing Couples that match preferences
-Send Message when connection is made
-Show that you've already liked someone
+Remove couples you have liked from Browse ViewBag
+
 Add option to like everyone
 Add link to send message to matches
 https://www.mikesdotnetting.com/article/268/how-to-send-email-in-asp-net-mvc
 
 
+
+==Send Message when connection is made
+==Show that you've already liked someone
 ==Show message when a match is made
 ==Add page to see all matches
 ==Send back to profile from Like

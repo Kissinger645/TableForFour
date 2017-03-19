@@ -11,6 +11,10 @@ using System.IO;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Migrations;
 using System.Text.RegularExpressions;
+using Twilio;
+using Twilio.Clients;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace Dinner.Controllers
 {
@@ -27,7 +31,7 @@ namespace Dinner.Controllers
         public ActionResult Matches()
         {
             var id = User.Identity.GetUserId();
-            var matches = db.Match.Where(c => c.FirstCouple == id || 
+            var matches = db.Match.Where(c => c.FirstCouple == id ||
             c.SecondCouple == id).ToList();
             if (matches == null)
             {
@@ -39,7 +43,7 @@ namespace Dinner.Controllers
             }
             return View();
         }
-        
+
         public ActionResult Like(string id)
         {
             string otherCouple = db.Users.Where(c => c.UserName == id).FirstOrDefault().Id;
@@ -60,6 +64,14 @@ namespace Dinner.Controllers
                     SecondCouple = otherCouple,
                 };
                 db.Match.Add(match);
+                //Generate api search for top restaurants between couples.ZipCode
+
+                //Send Message with Results
+                var ourPhone = db.Couples.FirstOrDefault(c => c.CurrentUser == us).Phone;
+                var ourName = db.Couples.FirstOrDefault(c => c.CurrentUser == us).UserName;
+                var theirPhone = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).Phone;
+                var theirName = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).UserName;
+                
             }
 
             db.Like.Add(like);
@@ -76,18 +88,18 @@ namespace Dinner.Controllers
             bool liked = db.Like.Where(c => c.ThisCouple == us && c.OtherCouple == otherCouple).Any();
             if (liked == true)
             {
-                ViewBag.Liked = "*";
+                ViewBag.Liked = "(You have already liked this couple)";
             }
             else
             {
                 ViewBag.Liked = "";
             }
 
-            bool magic = db.Match.Where(c => c.FirstCouple == otherCouple  && c.SecondCouple == us ||
+            bool magic = db.Match.Where(c => c.FirstCouple == otherCouple && c.SecondCouple == us ||
                  c.FirstCouple == us && c.SecondCouple == otherCouple).Any();
             if (magic == true)
             {
-                ViewBag.Match = "Ayyy! We did it. Let's do dinner!";
+                ViewBag.Match = "We matched! Let's do dinner!";
             }
             else
             {
