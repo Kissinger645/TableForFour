@@ -81,12 +81,18 @@ namespace Dinner.Controllers
                 MessageResource.Create(
                 to: new PhoneNumber(ourPhone),
                 from: new PhoneNumber("+18642077275"),
-                body: $"Congrats {ourName}! You've made a Table For Four match with {theirName}. You can reach them at {theirPhone} Here are some restaurants located between you. https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
+                body: $"Congrats! You've made a Table For Four match with {theirName}. " +
+                $"You can reach them at {theirPhone}. " +
+                "Here are some restaurants located between you. " +
+                $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
 
                 MessageResource.Create(
                 to: new PhoneNumber(theirPhone),
                 from: new PhoneNumber("+18642077275"),
-                body: $"Congrats {theirName}! You've made a Table For Four match with {ourName}. You can reach them at {ourPhone} Here are some restaurants located between you. https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
+                body: $"Congrats! You've made a Table For Four match with {ourName}. " +
+                $"You can reach them at {ourPhone}. " +
+                "Here are some restaurants located between you. " +
+                $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
             }
 
             db.Like.Add(like);

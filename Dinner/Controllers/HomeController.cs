@@ -23,7 +23,10 @@ namespace Dinner.Controllers
         {
             var userId = User.Identity.GetUserId();
             var cCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
-            ViewBag.AllCouples = db.Couples.Where(c => c.Orientation == cCouple.SexualPreference).ToList();
+            //Viewing Couples to match with
+            ViewBag.AllCouples = db.Couples.Where(c => c.Orientation == cCouple.SexualPreference
+            && c.CurrentUser != userId
+            ).ToList();
             
             return View();
         }

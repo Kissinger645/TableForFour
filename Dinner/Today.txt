@@ -12,7 +12,7 @@ https://www.mikesdotnetting.com/article/268/how-to-send-email-in-asp-net-mvc
 Make sure you can't hack and get phone #'s
 
 
-
+== removed current couple from browse viewbag
 ==Fix Default Profile Pic
 ==Send Message when connection is made
 ==Show that you've already liked someone
