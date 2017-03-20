@@ -7,22 +7,20 @@
     <h3 style="color:deeppink;">@ViewBag.Match</h3>
     <div>
         <div class="photobox">
-            <img class="thumb" src="@ViewBag.ThisCouple.Image.FilePath" width="600" height="400" />
+            <img class="thumb" src="@ViewBag.ThisCouple.Image.FilePath" width="320" height="320" />
         </div>
     </div>
     <div>
-        <row>
-            <h3>
-                @ViewBag.ThisCouple.UserName
-                @Html.ActionLink(" ", "Like", "Couple", new { id = @ViewBag.ThisCouple.UserName },
+        <h3>
+            @ViewBag.ThisCouple.UserName
+            @Html.ActionLink(" ", "Like", "Couple", new { id = @ViewBag.ThisCouple.UserName },
            new { @class = "glyphicon glyphicon-thumbs-up" })
-            </h3>
-            <p>@ViewBag.Liked</p>
-        </row>
-        
+        </h3>
+        <p>@ViewBag.Liked</p>
         <h6>@ViewBag.ThisCouple.Bio</h6>
         <p>Restaurants we like: @ViewBag.ThisCouple.FavoriteFoods</p>
         <p>Prefer to spend: @ViewBag.ThisCouple.PricePreference</p>
+        <p>Live in @ViewBag.ThisCouple.ZipCode</p>
         <p>@Html.ActionLink("Go back", "Browse", "Home")</p>
     </div>
 </div>

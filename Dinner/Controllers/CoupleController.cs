@@ -15,6 +15,7 @@ using Twilio;
 using Twilio.Clients;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
+using System.Configuration;
 
 namespace Dinner.Controllers
 {
@@ -69,9 +70,23 @@ namespace Dinner.Controllers
                 //Send Message with Results
                 var ourPhone = db.Couples.FirstOrDefault(c => c.CurrentUser == us).Phone;
                 var ourName = db.Couples.FirstOrDefault(c => c.CurrentUser == us).UserName;
+                var z1 = db.Couples.FirstOrDefault(c => c.CurrentUser == us).ZipCode;
                 var theirPhone = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).Phone;
                 var theirName = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).UserName;
-                
+                var z2 = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).ZipCode;
+                string AccountSid = ConfigurationManager.AppSettings["TwilioSID"];
+                string AuthToken = ConfigurationManager.AppSettings["TwilioAuthToken"];
+                TwilioClient.Init(AccountSid, AuthToken);
+
+                MessageResource.Create(
+                to: new PhoneNumber(ourPhone),
+                from: new PhoneNumber("+18642077275"),
+                body: $"Congrats {ourName}! You've made a Table For Four match with {theirName}. You can reach them at {theirPhone} Here are some restaurants located between you. https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
+
+                MessageResource.Create(
+                to: new PhoneNumber(theirPhone),
+                from: new PhoneNumber("+18642077275"),
+                body: $"Congrats {theirName}! You've made a Table For Four match with {ourName}. You can reach them at {ourPhone} Here are some restaurants located between you. https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
             }
 
             db.Like.Add(like);

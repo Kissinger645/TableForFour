@@ -1,20 +1,32 @@
 ﻿<div class="container-fluid">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 60%; height:auto; margin: 0 auto">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 640px; height:640px; margin: 0 auto" ; data-interval="false">
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="~/Images/dinner-party-with-friends.jpg" alt="Table For Four"/>
+                <img src="~/Images/dinner-party-with-friends.jpg" alt="Table For Four" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Browse Couples</h3>
+                </div>
             </div>
-
 
             @foreach (var couple in ViewBag.AllCouples)
             {
                 <div class="item">
-                    <a href="/c/@couple.UserName">
+                    <a href="/Couple/Like/@couple.UserName">
                         <img src="@couple.Image.FilePath" alt="@couple.UserName">
                     </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@couple.UserName</h5>
+                        <h6>@couple.Bio</h6>
+                    </div>
                 </div>
             }
+            <div class="item">
+                <img src="~/Images/dinner-party-with-friends.jpg" alt="End of Couples">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>End of Couples</h3>
+                </div>
+            </div>
 
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

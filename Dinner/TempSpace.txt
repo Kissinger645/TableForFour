@@ -1,6 +1,5 @@
 ﻿American BBQ Chinese Cuban Delis Fast Food	French	German	Italian	Japanese Mediterranean Mexican		
 
-
 ===From Meetways:
 https://www.meetways.com/halfway/29681/29601/Mexican/d
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAK38vWXwOcQLhJYItHF0CyFxXRSyWAYts&libraries=places"> </script>
