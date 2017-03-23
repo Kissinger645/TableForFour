@@ -1,4 +1,13 @@
-﻿usernames Couple1 email couple1@bk.com pass Pass!1
+﻿
+Usernames Couple1 email couple1@bk.com pass Pass!1
+
+===Today I worked on
+add profile pics to list and matches views
+
+====
+
+add profile pics to list and matches views
+-remove match and add dislike
 Add link to send message to matches
 
 Remove couples you have liked from Browse ViewBag
@@ -9,8 +18,9 @@ Preview Profile pic before saving
 
 https://www.mikesdotnetting.com/article/268/how-to-send-email-in-asp-net-mvc
 Make sure you can't hack and get phone #'s
-
-
+==add unmatch controller
+==Changed the flow of things
+==Added a thumbs down/dislike
 ==Add thumbs up and thumbs down button to carousel
 ==Showing Couples that match preferences
 ==resize photos to 640x640

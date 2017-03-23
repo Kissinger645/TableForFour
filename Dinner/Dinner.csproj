@@ -236,6 +236,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoupleController.cs" />
+    <Compile Include="Controllers\CouplesGetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -308,6 +309,10 @@
     <Compile Include="Migrations\201703221739406_dbsetDislikes.cs" />
     <Compile Include="Migrations\201703221739406_dbsetDislikes.Designer.cs">
       <DependentUpon>201703221739406_dbsetDislikes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703231551320_REmoveUserPhoto.cs" />
+    <Compile Include="Migrations\201703231551320_REmoveUserPhoto.Designer.cs">
+      <DependentUpon>201703231551320_REmoveUserPhoto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -473,6 +478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703221739406_dbsetDislikes.resx">
       <DependentUpon>201703221739406_dbsetDislikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703231551320_REmoveUserPhoto.resx">
+      <DependentUpon>201703231551320_REmoveUserPhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

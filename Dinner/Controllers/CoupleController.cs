@@ -35,6 +35,7 @@ namespace Dinner.Controllers
         {
             string us = User.Identity.GetUserId();
             ViewBag.Liked = db.Like.Where(c => c.ThisCouple == us).ToList();
+            
             return View();
         }
 
@@ -45,6 +46,26 @@ namespace Dinner.Controllers
             ViewBag.Matches1 = db.Match.Where(c => c.FirstCouple == id).ToList();
             ViewBag.Matches2 = db.Match.Where(c => c.SecondCouple == id).ToList();
             return View();
+        }
+
+        public ActionResult Unmatch(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            MatchedCouple match = db.Match.Find(id);
+
+            if (match == null)
+            {
+                return HttpNotFound();
+            }
+            //Remove from liked list also
+
+            db.Match.Remove(match);
+            db.SaveChanges();
+            return RedirectToAction("Matches", "Couple");
         }
 
         public ActionResult Dislike(string id)
@@ -78,14 +99,6 @@ namespace Dinner.Controllers
             bool magic = db.Like.Where(c => c.ThisCouple == otherCouple && c.OtherCouple == us).Any();
             if (magic == true)
             {
-                MatchedCouple match = new MatchedCouple
-                {
-                    FirstCouple = us,
-                    SecondCouple = otherCouple,
-                };
-                db.Match.Add(match);
-                //Generate api search for top restaurants between couples.ZipCode
-
                 //Send Message with Results
                 var ourPhone = db.Couples.FirstOrDefault(c => c.CurrentUser == us).Phone;
                 var ourName = db.Couples.FirstOrDefault(c => c.CurrentUser == us).UserName;
@@ -102,7 +115,7 @@ namespace Dinner.Controllers
                 from: new PhoneNumber("+18642077275"),
                 body: $"Congrats! You've made a Table For Four match with {theirName}. " +
                 $"You can reach them at {theirPhone}. " +
-                "Here are some restaurants located between you. " +
+                "The link below will show you some restaurants located between you. " +
                 $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
 
                 MessageResource.Create(
@@ -112,12 +125,39 @@ namespace Dinner.Controllers
                 $"You can reach them at {ourPhone}. " +
                 "Here are some restaurants located between you. " +
                 $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
+
+                MatchedCouple match = new MatchedCouple
+                {
+                    FirstCouple = us,
+                    SecondCouple = otherCouple,
+                    Suggestions = $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d",
+                };
+                db.Match.Add(match);
             }
 
             db.Like.Add(like);
             db.SaveChanges();
             var last = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
             return Redirect(last);
+        }
+
+        public ActionResult Unlike(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Likes like = db.Like.Find(id);
+
+            if (like == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Like.Remove(like);
+            db.SaveChanges();
+            return RedirectToAction("List", "Couple");
         }
 
         [Route("c/{UserName}")]
@@ -188,6 +228,7 @@ namespace Dinner.Controllers
                 File = filename
             };
             var currentUser = db.Couples.Where(c => c.CurrentUser == thisCouple).FirstOrDefault();
+            
             currentUser.ProfilePic = uploadModel.Id;
             db.ImageUploads.Add(uploadModel);
             db.SaveChanges();

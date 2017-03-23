@@ -8,7 +8,7 @@
 
             @foreach (var couple in ViewBag.AllCouples)
             {
-                <div class="item" data-target="#myCarousel" data-slide-to="1">
+                <div class="item">
                     <a href="/Couple/Like/@couple.UserName">
                         <img src="@couple.Image.FilePath" alt="@couple.UserName">
                     </a>
@@ -17,7 +17,7 @@
                             @Html.ActionLink(" ", "Dislike", "Couple", new { id = @couple.UserName },
                         new { @class = "glyphicon glyphicon-thumbs-down" })
 
-                            <a href="~/c/@couple.UserName" style="color:deeppink">@couple.UserName</a>
+                            <a href="/c/@couple.UserName" style="color:deeppink">@couple.UserName</a>
 
                             @Html.ActionLink(" ", "Like", "Couple", new { id = @couple.UserName },
                         new { @class = "glyphicon glyphicon-thumbs-up" })
@@ -29,7 +29,7 @@
             <div class="item">
                 <img src="~/Images/t44blackside.png" alt="End">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>End</h3>
+                    <h4>No more Couples</h4>
                 </div>
             </div>
 

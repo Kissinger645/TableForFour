@@ -5,28 +5,33 @@
 <div class="container">
 
     <h3>These are your matches.</h3>
-    <h6>Restaurant suggestions powered by <a href="https://www.meetways.com/">Meetways</a></h6>
     <ul class="list-group">
         @foreach (var couple in ViewBag.Matches1)
         {
             <li class="list-group-item">
-                <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a>
-                - @Html.ActionLink("Send Message", "Message", "Couple")
-                - <a href="https://www.meetways.com/">Restaurants</a>
-                - @Html.ActionLink("Remove Match", "Unlike", "Couple")
+                <img class="thumb" src="" width="80" height="80" />
+                 - <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a>
+            </li>
+            <li class="list-group-item">
+                @Html.ActionLink("Send Message", "Message", "Couple")
+                - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
+                - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id }, null)
             </li>
         }
 
         @foreach (var couple in ViewBag.Matches2)
         {
             <li class="list-group-item">
-                <a href="/c/@couple.First.UserName"> @couple.First.UserName</a>
-                - @Html.ActionLink("Send Message", "Message", "Couple")
-                - <a href="https://www.meetways.com/">Restaurants</a>
-                - @Html.ActionLink("Remove Match", "Unlike", "Couple")
+                <img class="thumb" src="" width="80" height="80" />
+                 - <a href="/c/@couple.First.UserName"> @couple.First.UserName</a>
+            </li>
+            <li class="list-group-item">
+                @Html.ActionLink("Send Message", "Message", "Couple")
+                - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
+                - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id}, null)
             </li>
         }
     </ul>
     <p><a href="javascript:history.back()">Back</a></p>
-
+    <h6>Restaurant suggestions powered by <a href="https://www.meetways.com/">Meetways</a></h6>
 </div>

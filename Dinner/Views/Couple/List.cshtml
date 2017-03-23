@@ -13,7 +13,7 @@
                 <li class="list-group-item">
                     <img class="thumb" src="" width="80" height="80" />
                     <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a> 
-                    - @Html.ActionLink("Remove", "Unlike", "Couple")
+                    - @Html.ActionLink("Remove", "Unlike", "Couple", new { id = @couple.Id }, null)
                 </li>
             }
         </ul>
