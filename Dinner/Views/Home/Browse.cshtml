@@ -3,28 +3,33 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="~/Images/dinner-party-with-friends.jpg" alt="Table For Four" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Browse Couples</h3>
-                </div>
+                <img src="~/Images/DN.jpg" alt="Table For Four" />
             </div>
 
             @foreach (var couple in ViewBag.AllCouples)
             {
-                <div class="item">
+                <div class="item" data-target="#myCarousel" data-slide-to="1">
                     <a href="/Couple/Like/@couple.UserName">
                         <img src="@couple.Image.FilePath" alt="@couple.UserName">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>@couple.UserName</h5>
-                        <h6>@couple.Bio</h6>
+                        <h2>
+                            @Html.ActionLink(" ", "Dislike", "Couple", new { id = @couple.UserName },
+                        new { @class = "glyphicon glyphicon-thumbs-down" })
+
+                            <a href="~/c/@couple.UserName" style="color:deeppink">@couple.UserName</a>
+
+                            @Html.ActionLink(" ", "Like", "Couple", new { id = @couple.UserName },
+                        new { @class = "glyphicon glyphicon-thumbs-up" })
+                        </h2>
                     </div>
                 </div>
             }
+
             <div class="item">
-                <img src="~/Images/dinner-party-with-friends.jpg" alt="End of Couples">
+                <img src="~/Images/t44blackside.png" alt="End">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>End of Couples</h3>
+                    <h3>End</h3>
                 </div>
             </div>
 

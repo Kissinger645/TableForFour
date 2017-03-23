@@ -19,15 +19,17 @@ namespace Dinner.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Browse()
         {
             var userId = User.Identity.GetUserId();
             var cCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
             //Viewing Couples to match with
-            ViewBag.AllCouples = db.Couples.Where(c => c.Orientation == cCouple.SexualPreference
-            && c.CurrentUser != userId
+            var r = new Random();
+            var list = db.Couples.Where(c => c.Orientation == cCouple.Orientation
+            && c.CurrentUser != userId 
             ).ToList();
-            
+            ViewBag.AllCouples = list.OrderBy(x => r.Next());
             return View();
         }
     }

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="container-fluid">
+    <h3>Couples we liked</h3>
+    
+    <p>
+        <ul class="list-group">
+            @foreach (var couple in ViewBag.Liked)
+            {
+                <li class="list-group-item">
+                    <img class="thumb" src="" width="80" height="80" />
+                    <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a> 
+                    - @Html.ActionLink("Remove", "Unlike", "Couple")
+                </li>
+            }
+        </ul>
+    </p>
+    <p><a href="javascript:history.back()">Back</a></p>
+</div>

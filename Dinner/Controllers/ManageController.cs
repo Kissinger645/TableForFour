@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Dinner.Models;
 using System.IO;
+using ImageResizer;
 
 namespace Dinner.Controllers
 {
@@ -46,9 +47,14 @@ namespace Dinner.Controllers
             string filename = $"{DateTime.Now.Ticks}{uploadedFile.FileName}";
             var serverPath = Server.MapPath(@"~\Uploads");
             var fullPath = Path.Combine(serverPath, filename);
-            uploadedFile.SaveAs(fullPath);
-
-            // ---------------------
+            //uploadedFile.SaveAs(fullPath);
+            ResizeSettings resizeSetting = new ResizeSettings
+            {
+                Width = 640,
+                Height = 640,
+                Format = "png"
+            };
+            ImageBuilder.Current.Build(uploadedFile, fullPath, resizeSetting);
 
             var uploadModel = new ImageUpload
             {

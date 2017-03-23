@@ -1,17 +1,20 @@
 ﻿usernames Couple1 email couple1@bk.com pass Pass!1
+Add link to send message to matches
 
-Finish User Profile Add Checkbox for Ages and Food
-Showing Couples that match preferences
 Remove couples you have liked from Browse ViewBag
+Remove couples you have disliked from BrowseViewBag
+Add couples to unlike list
 
 Preview Profile pic before saving
 
-Add option to like everyone
-Add link to send message to matches
 https://www.mikesdotnetting.com/article/268/how-to-send-email-in-asp-net-mvc
 Make sure you can't hack and get phone #'s
 
 
+==Add thumbs up and thumbs down button to carousel
+==Showing Couples that match preferences
+==resize photos to 640x640
+==randomly sort browse couples
 == removed current couple from browse viewbag
 ==Fix Default Profile Pic
 ==Send Message when connection is made

@@ -12,6 +12,8 @@
     </div>
     <div>
         <h3>
+            @Html.ActionLink(" ", "Dislike", "Couple", new { id = @ViewBag.ThisCouple.UserName },
+           new { @class = "glyphicon glyphicon-thumbs-down" })
             @ViewBag.ThisCouple.UserName
             @Html.ActionLink(" ", "Like", "Couple", new { id = @ViewBag.ThisCouple.UserName },
            new { @class = "glyphicon glyphicon-thumbs-up" })
@@ -21,6 +23,7 @@
         <p>Restaurants we like: @ViewBag.ThisCouple.FavoriteFoods</p>
         <p>Prefer to spend: @ViewBag.ThisCouple.PricePreference</p>
         <p>Live in @ViewBag.ThisCouple.ZipCode</p>
-        <p>@Html.ActionLink("Go back", "Browse", "Home")</p>
+        <p><a href="javascript:history.back()">Back</a></p>
+        
     </div>
 </div>

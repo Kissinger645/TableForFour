@@ -4,14 +4,29 @@
 }
 <div class="container">
 
-    <h3>These are your matches.</h3> 
-    <h4>Use the links below to send them a message...</h4>
-    <ul>
-        @foreach (var couple in ViewBag.Matches)
+    <h3>These are your matches.</h3>
+    <h6>Restaurant suggestions powered by <a href="https://www.meetways.com/">Meetways</a></h6>
+    <ul class="list-group">
+        @foreach (var couple in ViewBag.Matches1)
         {
-            <li>@couple.First.UserName and @couple.Second.UserName</li>
+            <li class="list-group-item">
+                <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a>
+                - @Html.ActionLink("Send Message", "Message", "Couple")
+                - <a href="https://www.meetways.com/">Restaurants</a>
+                - @Html.ActionLink("Remove Match", "Unlike", "Couple")
+            </li>
+        }
+
+        @foreach (var couple in ViewBag.Matches2)
+        {
+            <li class="list-group-item">
+                <a href="/c/@couple.First.UserName"> @couple.First.UserName</a>
+                - @Html.ActionLink("Send Message", "Message", "Couple")
+                - <a href="https://www.meetways.com/">Restaurants</a>
+                - @Html.ActionLink("Remove Match", "Unlike", "Couple")
+            </li>
         }
     </ul>
-
+    <p><a href="javascript:history.back()">Back</a></p>
 
 </div>

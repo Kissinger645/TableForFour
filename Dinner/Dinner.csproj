@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.0.5\lib\net45\ImageResizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -297,9 +301,18 @@
     <Compile Include="Migrations\201703160928171_addedDbSet.Designer.cs">
       <DependentUpon>201703160928171_addedDbSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703221735172_dislikes.cs" />
+    <Compile Include="Migrations\201703221735172_dislikes.Designer.cs">
+      <DependentUpon>201703221735172_dislikes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703221739406_dbsetDislikes.cs" />
+    <Compile Include="Migrations\201703221739406_dbsetDislikes.Designer.cs">
+      <DependentUpon>201703221739406_dbsetDislikes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Couple.cs" />
+    <Compile Include="Models\Dislike.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageUpload.cs" />
     <Compile Include="Models\Likes.cs" />
@@ -312,18 +325,30 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.js" />
+    <Content Include="Content\Slick\ajax-loader.gif" />
+    <Content Include="Content\Slick\fonts\slick.svg" />
+    <Content Include="Content\Slick\slick-theme.css" />
+    <Content Include="Content\Slick\slick.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Ideas.txt" />
     <Content Include="Images\dinner-party-with-friends.jpg" />
+    <Content Include="Images\DN.jpg" />
+    <Content Include="Images\t44.png" />
+    <Content Include="Images\t44blackside.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Slick\slick.scss" />
+    <Content Include="Content\Slick\slick-theme.scss" />
+    <Content Include="Content\Slick\fonts\slick.woff" />
+    <Content Include="Content\Slick\fonts\slick.ttf" />
+    <Content Include="Content\Slick\fonts\slick.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -335,6 +360,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Slick\slick.js" />
+    <Content Include="Scripts\Slick\slick.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="TempSpace.txt" />
     <Content Include="Today.txt" />
@@ -382,6 +409,7 @@
     <Content Include="Views\Couple\Info.cshtml" />
     <Content Include="Views\Couple\Like.cshtml" />
     <Content Include="Views\Couple\Matches.cshtml" />
+    <Content Include="Views\Couple\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -439,6 +467,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703160928171_addedDbSet.resx">
       <DependentUpon>201703160928171_addedDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703221735172_dislikes.resx">
+      <DependentUpon>201703221735172_dislikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703221739406_dbsetDislikes.resx">
+      <DependentUpon>201703221739406_dbsetDislikes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

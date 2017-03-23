@@ -16,9 +16,11 @@ using Twilio.Clients;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 using System.Configuration;
+using ImageResizer;
 
 namespace Dinner.Controllers
 {
+    [Authorize]
     public class CoupleController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -29,20 +31,37 @@ namespace Dinner.Controllers
             return View(db.Couples.ToList());
         }
 
+        public ActionResult List()
+        {
+            string us = User.Identity.GetUserId();
+            ViewBag.Liked = db.Like.Where(c => c.ThisCouple == us).ToList();
+            return View();
+        }
+
         public ActionResult Matches()
         {
             var id = User.Identity.GetUserId();
-            var matches = db.Match.Where(c => c.FirstCouple == id ||
-            c.SecondCouple == id).ToList();
-            if (matches == null)
-            {
-                ViewBag.Matches = "No matches yet.";
-            }
-            else
-            {
-                ViewBag.Matches = matches;
-            }
+            //Separating matches to know which is current user
+            ViewBag.Matches1 = db.Match.Where(c => c.FirstCouple == id).ToList();
+            ViewBag.Matches2 = db.Match.Where(c => c.SecondCouple == id).ToList();
             return View();
+        }
+
+        public ActionResult Dislike(string id)
+        {
+            string otherCouple = db.Users.Where(c => c.UserName == id).FirstOrDefault().Id;
+            string us = User.Identity.GetUserId();
+
+            Dislike dislike = new Dislike
+            {
+                ThisCouple = us,
+                OtherCouple = otherCouple
+            };
+
+            db.Dislikes.Add(dislike);
+            db.SaveChanges();
+            var last = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
+            return Redirect(last);
         }
 
         public ActionResult Like(string id)
@@ -109,7 +128,7 @@ namespace Dinner.Controllers
             bool liked = db.Like.Where(c => c.ThisCouple == us && c.OtherCouple == otherCouple).Any();
             if (liked == true)
             {
-                ViewBag.Liked = "(You have already liked this couple)";
+                ViewBag.Liked = "(You liked this couple)";
             }
             else
             {
@@ -128,6 +147,8 @@ namespace Dinner.Controllers
             }
 
             ViewBag.ThisCouple = db.Couples.Where(c => c.UserName == UserName).FirstOrDefault();
+            //var last = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
+            //return Redirect(last);
             return View();
         }
 
@@ -151,7 +172,15 @@ namespace Dinner.Controllers
             string filename = $"{DateTime.Now.Ticks}{uploadedFile.FileName}";
             var serverPath = Server.MapPath(@"~\Uploads");
             var fullPath = Path.Combine(serverPath, filename);
-            uploadedFile.SaveAs(fullPath);
+            //uploadedFile.SaveAs(fullPath);
+            //resizing to 640x640
+            ResizeSettings resizeSetting = new ResizeSettings
+            {
+                Width = 640,
+                Height = 640,
+                Format = "png"
+            };
+            ImageBuilder.Current.Build(uploadedFile, fullPath, resizeSetting);
 
             var uploadModel = new ImageUpload
             {
