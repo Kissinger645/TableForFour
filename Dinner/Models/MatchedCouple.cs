@@ -11,14 +11,14 @@ namespace Dinner.Models
         public int Id { get; set; }
         public string Suggestions { get; set; }
 
-        public string FirstCouple { get; set; }
+        public int FirstCouple { get; set; }
 
         [ForeignKey("FirstCouple")]
-        public virtual ApplicationUser First { get; set; }
+        public virtual Couple First { get; set; }
 
-        public string SecondCouple { get; set; }
+        public int SecondCouple { get; set; }
 
         [ForeignKey("SecondCouple")]
-        public virtual ApplicationUser Second { get; set; }
+        public virtual Couple Second { get; set; }
     }
 }

@@ -11,7 +11,7 @@
             @foreach (var couple in ViewBag.Liked)
             {
                 <li class="list-group-item">
-                    <img class="thumb" src="" width="80" height="80" />
+                    <img class="thumb" src="@couple.Second.Image.FilePath" width="80" height="80" />
                     <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a> 
                     - @Html.ActionLink("Remove", "Unlike", "Couple", new { id = @couple.Id }, null)
                 </li>

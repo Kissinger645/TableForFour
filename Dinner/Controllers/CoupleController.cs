@@ -33,8 +33,9 @@ namespace Dinner.Controllers
 
         public ActionResult List()
         {
-            string us = User.Identity.GetUserId();
-            ViewBag.Liked = db.Like.Where(c => c.ThisCouple == us).ToList();
+            var id = User.Identity.GetUserId();
+            var us = db.Couples.Where(c =>c.CurrentUser == id).FirstOrDefault();
+            ViewBag.Liked = db.Like.Where(c => c.First.Id == us.Id).ToList();
             
             return View();
         }
@@ -42,9 +43,10 @@ namespace Dinner.Controllers
         public ActionResult Matches()
         {
             var id = User.Identity.GetUserId();
+            var us = db.Couples.Where(c => c.CurrentUser == id).FirstOrDefault();
             //Separating matches to know which is current user
-            ViewBag.Matches1 = db.Match.Where(c => c.FirstCouple == id).ToList();
-            ViewBag.Matches2 = db.Match.Where(c => c.SecondCouple == id).ToList();
+            ViewBag.Matches1 = db.Match.Where(c => c.First.Id == us.Id).ToList();
+            ViewBag.Matches2 = db.Match.Where(c => c.Second.Id == us.Id).ToList();
             return View();
         }
 
@@ -70,13 +72,14 @@ namespace Dinner.Controllers
 
         public ActionResult Dislike(string id)
         {
-            string otherCouple = db.Users.Where(c => c.UserName == id).FirstOrDefault().Id;
-            string us = User.Identity.GetUserId();
+            var us = User.Identity.GetUserId();
+            var otherCouple = db.Couples.Where(c => c.UserName == id).FirstOrDefault();
+            var thisCouple = db.Couples.Where(c => c.CurrentUser == us).FirstOrDefault();
 
             Dislike dislike = new Dislike
             {
-                ThisCouple = us,
-                OtherCouple = otherCouple
+                First = thisCouple,
+                Second = otherCouple
             };
 
             db.Dislikes.Add(dislike);
@@ -87,25 +90,26 @@ namespace Dinner.Controllers
 
         public ActionResult Like(string id)
         {
-            string otherCouple = db.Users.Where(c => c.UserName == id).FirstOrDefault().Id;
-            string us = User.Identity.GetUserId();
+            var us = User.Identity.GetUserId();
+            var otherCouple = db.Couples.Where(c => c.UserName == id).FirstOrDefault();
+            var thisCouple = db.Couples.Where(c => c.CurrentUser == us).FirstOrDefault();
 
             Likes like = new Likes
             {
-                ThisCouple = us,
-                OtherCouple = otherCouple
+                First = thisCouple,
+                Second = otherCouple
             };
 
-            bool magic = db.Like.Where(c => c.ThisCouple == otherCouple && c.OtherCouple == us).Any();
+            bool magic = db.Like.Where(c => c.First.Id == otherCouple.Id && c.Second.Id == thisCouple.Id).Any();
             if (magic == true)
             {
                 //Send Message with Results
-                var ourPhone = db.Couples.FirstOrDefault(c => c.CurrentUser == us).Phone;
-                var ourName = db.Couples.FirstOrDefault(c => c.CurrentUser == us).UserName;
-                var z1 = db.Couples.FirstOrDefault(c => c.CurrentUser == us).ZipCode;
-                var theirPhone = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).Phone;
-                var theirName = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).UserName;
-                var z2 = db.Couples.FirstOrDefault(c => c.CurrentUser == otherCouple).ZipCode;
+                var ourPhone = thisCouple.Phone;
+                var ourName = thisCouple.UserName;
+                var z1 = thisCouple.ZipCode;
+                var theirPhone = otherCouple.Phone;
+                var theirName = otherCouple.UserName;
+                var z2 = otherCouple.ZipCode;
                 string AccountSid = ConfigurationManager.AppSettings["TwilioSID"];
                 string AuthToken = ConfigurationManager.AppSettings["TwilioAuthToken"];
                 TwilioClient.Init(AccountSid, AuthToken);
@@ -128,8 +132,8 @@ namespace Dinner.Controllers
 
                 MatchedCouple match = new MatchedCouple
                 {
-                    FirstCouple = us,
-                    SecondCouple = otherCouple,
+                    FirstCouple = thisCouple.Id,
+                    SecondCouple = otherCouple.Id,
                     Suggestions = $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d",
                 };
                 db.Match.Add(match);
@@ -163,9 +167,10 @@ namespace Dinner.Controllers
         [Route("c/{UserName}")]
         public ActionResult Info(string UserName)
         {
-            string otherCouple = db.Users.Where(c => c.UserName == UserName).FirstOrDefault().Id;
-            string us = User.Identity.GetUserId();
-            bool liked = db.Like.Where(c => c.ThisCouple == us && c.OtherCouple == otherCouple).Any();
+            var id = User.Identity.GetUserId();
+            var otherCouple = db.Couples.Where(c => c.UserName == UserName).FirstOrDefault().Id;
+            var us = db.Couples.Where(c => c.CurrentUser == id).FirstOrDefault();
+            bool liked = db.Like.Where(c => c.First.Id == us.Id && c.OtherCouple == otherCouple).Any();
             if (liked == true)
             {
                 ViewBag.Liked = "(You liked this couple)";
@@ -175,8 +180,8 @@ namespace Dinner.Controllers
                 ViewBag.Liked = "";
             }
 
-            bool magic = db.Match.Where(c => c.FirstCouple == otherCouple && c.SecondCouple == us ||
-                 c.FirstCouple == us && c.SecondCouple == otherCouple).Any();
+            bool magic = db.Match.Where(c => c.FirstCouple == otherCouple && c.Second.Id == us.Id ||
+                 c.First.Id == us.Id && c.SecondCouple == otherCouple).Any();
             if (magic == true)
             {
                 ViewBag.Match = "We matched! Let's do dinner!";

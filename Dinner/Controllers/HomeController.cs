@@ -23,13 +23,27 @@ namespace Dinner.Controllers
         public ActionResult Browse()
         {
             var userId = User.Identity.GetUserId();
-            var cCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
-            //Viewing Couples to match with
+            var thisCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
             var r = new Random();
-            var list = db.Couples.Where(c => c.Orientation == cCouple.Orientation
+            //Couples that match sexual orientation
+            var list1 = db.Couples.Where(c => c.Orientation == thisCouple.Orientation
             && c.CurrentUser != userId 
             ).ToList();
-            ViewBag.AllCouples = list.OrderBy(x => r.Next());
+            //Removing liked and disliked couples
+            var listDislike = db.Dislikes.Where(c => c.ThisCouple == thisCouple.Id);
+            var listLike = db.Like.Where(c => c.ThisCouple == thisCouple.Id);
+            var list3 = new List<Couple>();
+            foreach (var item in listDislike)
+            {
+                list3.Add(item.Second);
+            }
+            foreach (var item in listLike)
+            {
+                list3.Add(item.Second);
+            }
+
+            list1.RemoveAll(i => list3.Contains(i));
+            ViewBag.AllCouples = list1.OrderBy(x => r.Next());
             return View();
         }
     }

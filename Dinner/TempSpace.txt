@@ -80,3 +80,21 @@ https://www.meetways.com/halfway/29681/29601/Mexican/d
                 </div>
             </div>
 
+[Authorize]
+        public ActionResult Browse()
+        {
+            var userId = User.Identity.GetUserId();
+            var cCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
+            var r = new Random();
+            //Couples that match sexual orientation
+            var list1 = db.Couples.Where(c => c.Orientation == cCouple.Orientation
+            && c.CurrentUser != userId 
+            ).ToList();
+            //Removing disliked couples
+            var list2 = db.Dislikes.Where(c => c.ThisCouple == cCouple).ToList();
+            var DislikedCouples = new List<Couple>();
+            
+
+            ViewBag.AllCouples = list1.OrderBy(x => r.Next());
+            return View();
+        }

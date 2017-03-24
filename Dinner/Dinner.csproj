@@ -314,6 +314,14 @@
     <Compile Include="Migrations\201703231551320_REmoveUserPhoto.Designer.cs">
       <DependentUpon>201703231551320_REmoveUserPhoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703232110098_DislikeCouple.cs" />
+    <Compile Include="Migrations\201703232110098_DislikeCouple.Designer.cs">
+      <DependentUpon>201703232110098_DislikeCouple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703240242151_userToCouple.cs" />
+    <Compile Include="Migrations\201703240242151_userToCouple.Designer.cs">
+      <DependentUpon>201703240242151_userToCouple.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Couple.cs" />
@@ -481,6 +489,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703231551320_REmoveUserPhoto.resx">
       <DependentUpon>201703231551320_REmoveUserPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703232110098_DislikeCouple.resx">
+      <DependentUpon>201703232110098_DislikeCouple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703240242151_userToCouple.resx">
+      <DependentUpon>201703240242151_userToCouple.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
