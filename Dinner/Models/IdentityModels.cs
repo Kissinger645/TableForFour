@@ -36,5 +36,6 @@ namespace Dinner.Models
         public DbSet<MatchedCouple> Match { get; set; }
         public DbSet<Likes> Like { get; set; }
         public DbSet<Dislike> Dislikes { get; set; }
+        public DbSet<Messages> Message { get; set; }
     }
 }

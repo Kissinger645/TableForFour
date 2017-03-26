@@ -239,6 +239,7 @@
     <Compile Include="Controllers\CouplesGetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,6 +323,10 @@
     <Compile Include="Migrations\201703240242151_userToCouple.Designer.cs">
       <DependentUpon>201703240242151_userToCouple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703261414507_Messages.cs" />
+    <Compile Include="Migrations\201703261414507_Messages.Designer.cs">
+      <DependentUpon>201703261414507_Messages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Couple.cs" />
@@ -331,6 +336,7 @@
     <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MatchedCouple.cs" />
+    <Compile Include="Models\Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -418,8 +424,10 @@
     <Content Include="Views\Couple\Like.cshtml" />
     <Content Include="Views\Couple\Matches.cshtml" />
     <Content Include="Views\Couple\List.cshtml" />
+    <Content Include="Views\Message\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
@@ -490,6 +498,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703240242151_userToCouple.resx">
       <DependentUpon>201703240242151_userToCouple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261414507_Messages.resx">
+      <DependentUpon>201703261414507_Messages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

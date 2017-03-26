@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Messages";
+}
+<div class="container-fluid">
+    <h2 style="color:deeppink">Messages</h2>
+    <div class="list-group">
+        @foreach (var item in ViewBag.Messages)
+        {
+            <button type="button" class="list-group-item">
+                <h4>@item.Title</h4>
+                <p>@item.Message</p>
+                <p>@item.Created</p>
+                <p>@Html.ActionLink("Delete", "Delete", "Message", new { id = @item.Id }, null)</p>
+            </button>
+        }
+    </div>
+</div>

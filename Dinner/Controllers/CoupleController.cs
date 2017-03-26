@@ -100,7 +100,17 @@ namespace Dinner.Controllers
                 First = thisCouple,
                 Second = otherCouple
             };
+            db.Like.Add(like);
 
+            Messages likeMessage = new Messages
+            {
+                Created = DateTime.Now,
+                ToCouple = thisCouple.UserName,
+                Title = $"You liked {otherCouple.UserName}"
+            };
+            db.Message.Add(likeMessage);
+
+            //Couples have liked each other, creates match and sends messages
             bool magic = db.Like.Where(c => c.First.Id == otherCouple.Id && c.Second.Id == thisCouple.Id).Any();
             if (magic == true)
             {
@@ -111,6 +121,17 @@ namespace Dinner.Controllers
                 var theirPhone = otherCouple.Phone;
                 var theirName = otherCouple.UserName;
                 var z2 = otherCouple.ZipCode;
+
+                var mess1 = $"Congrats! You've made a Table For Four match with {theirName}. " +
+                $"You can reach them at {theirPhone}. " +
+                "The link below will show you some restaurants located between you. " +
+                $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d";
+
+                var mess2 = $"Congrats! You've made a Table For Four match with {ourName}. " +
+                $"You can reach them at {ourPhone}. " +
+                "The link below will show you some restaurants located between you. " +
+                $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d";
+
                 string AccountSid = ConfigurationManager.AppSettings["TwilioSID"];
                 string AuthToken = ConfigurationManager.AppSettings["TwilioAuthToken"];
                 TwilioClient.Init(AccountSid, AuthToken);
@@ -118,18 +139,12 @@ namespace Dinner.Controllers
                 MessageResource.Create(
                 to: new PhoneNumber(ourPhone),
                 from: new PhoneNumber("+18642077275"),
-                body: $"Congrats! You've made a Table For Four match with {theirName}. " +
-                $"You can reach them at {theirPhone}. " +
-                "The link below will show you some restaurants located between you. " +
-                $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
+                body: $"{mess1}");
 
                 MessageResource.Create(
                 to: new PhoneNumber(theirPhone),
                 from: new PhoneNumber("+18642077275"),
-                body: $"Congrats! You've made a Table For Four match with {ourName}. " +
-                $"You can reach them at {ourPhone}. " +
-                "Here are some restaurants located between you. " +
-                $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d");
+                body: $"{mess2}");
 
                 MatchedCouple match = new MatchedCouple
                 {
@@ -138,9 +153,28 @@ namespace Dinner.Controllers
                     Suggestions = $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d",
                 };
                 db.Match.Add(match);
+
+                Messages message1 = new Messages
+                {
+                    Created = DateTime.Now,
+                    FromCouple = thisCouple.UserName,
+                    ToCouple = otherCouple.UserName,
+                    Title = $"Congrats! You've matched up with {thisCouple.UserName}",
+                    Message = mess1
+                };
+                db.Message.Add(message1);
+
+                Messages message2 = new Messages
+                {
+                    Created = DateTime.Now,
+                    FromCouple = otherCouple.UserName,
+                    ToCouple = thisCouple.UserName,
+                    Title = $"Congrats! You've matched up with {otherCouple.UserName}",
+                    Message = mess2
+                };
+                db.Message.Add(message2);
             }
 
-            db.Like.Add(like);
             db.SaveChanges();
             var last = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
             return Redirect(last);
