@@ -338,10 +338,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.js" />
-    <Content Include="Content\Slick\ajax-loader.gif" />
-    <Content Include="Content\Slick\fonts\slick.svg" />
-    <Content Include="Content\Slick\slick-theme.css" />
-    <Content Include="Content\Slick\slick.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -349,22 +345,23 @@
     <Content Include="Ideas.txt" />
     <Content Include="Images\dinner-party-with-friends.jpg" />
     <Content Include="Images\DN.jpg" />
+    <Content Include="Images\398.PNG" />
+    <Content Include="Images\rnd.PNG" />
+    <Content Include="Images\rnd2.PNG" />
     <Content Include="Images\t44.png" />
     <Content Include="Images\t44blackside.png" />
+    <Content Include="Images\thickTop.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\Slick\slick.scss" />
-    <Content Include="Content\Slick\slick-theme.scss" />
-    <Content Include="Content\Slick\fonts\slick.woff" />
-    <Content Include="Content\Slick\fonts\slick.ttf" />
-    <Content Include="Content\Slick\fonts\slick.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.bcSwipe.js" />
+    <Content Include="Scripts\jquery.bcSwipe.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -373,8 +370,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\Slick\slick.js" />
-    <Content Include="Scripts\Slick\slick.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="TempSpace.txt" />
     <Content Include="Today.txt" />

@@ -2,21 +2,26 @@
 Usernames Couple1 email couple1@bk.com pass Pass!1
 
 ===Today I worked on
-Added API
-removed disliked users from browse
+
+
 ====
+add notifications when you make match, add like/dislike
+limit couples on distance
+https://www.opentable.com/g/south-carolina/greenville-restaurants
 
+add notifications when like/dislike on view page
+make phone # required on registration
 add dinner questions
-add profile pics to list and matches views
--remove match and add dislike
 Add link to send message to matches
-
-Remove couples you have liked from Browse ViewBag
-Remove couples you have disliked from BrowseViewBag
-Add couples to unlike list
-
 Preview Profile pic before saving
 
+==Added API
+==removed disliked users from browse
+==remove match and add dislike
+==Remove couples you have liked from Browse ViewBag
+==Remove couples you have disliked from BrowseViewBag
+==Add couples to unlike list
+==add profile pics to list and matches views
 https://www.mikesdotnetting.com/article/268/how-to-send-email-in-asp-net-mvc
 Make sure you can't hack and get phone #'s
 ==add unmatch controller

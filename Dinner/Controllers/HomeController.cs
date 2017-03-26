@@ -25,10 +25,7 @@ namespace Dinner.Controllers
             var userId = User.Identity.GetUserId();
             var thisCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
             var r = new Random();
-            //Couples that match sexual orientation
-            var list1 = db.Couples.Where(c => c.Orientation == thisCouple.Orientation
-            && c.CurrentUser != userId 
-            ).ToList();
+            var list1 = db.Couples.Where(c => c.CurrentUser != userId).ToList();
             //Removing liked and disliked couples
             var listDislike = db.Dislikes.Where(c => c.ThisCouple == thisCouple.Id);
             var listLike = db.Like.Where(c => c.ThisCouple == thisCouple.Id);

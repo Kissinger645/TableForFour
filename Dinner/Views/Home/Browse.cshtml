@@ -1,19 +1,20 @@
-﻿<div class="container-fluid">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 640px; height:640px; margin: 0 auto" ; data-interval="false">
+﻿<script src="jquery.bcSwipe.js"></script>
+<div class="container-fluid">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="~/Images/DN.jpg" alt="Table For Four" />
+                <img class="d-block img-fluid" src="~/Images/rnd2.png" alt="Table For Four" />
             </div>
 
             @foreach (var couple in ViewBag.AllCouples)
             {
                 <div class="item">
-                    <a href="/Couple/Like/@couple.UserName">
-                        <img src="@couple.Image.FilePath" alt="@couple.UserName">
+                    <a href="/c/@couple.UserName">
+                        <img class="d-block img-fluid"src="@couple.Image.FilePath" alt="@couple.UserName">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>
+                        <h3>
                             @Html.ActionLink(" ", "Dislike", "Couple", new { id = @couple.UserName },
                         new { @class = "glyphicon glyphicon-thumbs-down" })
 
@@ -21,13 +22,13 @@
 
                             @Html.ActionLink(" ", "Like", "Couple", new { id = @couple.UserName },
                         new { @class = "glyphicon glyphicon-thumbs-up" })
-                        </h2>
+                        </h3>
                     </div>
                 </div>
             }
 
             <div class="item">
-                <img src="~/Images/t44blackside.png" alt="End">
+                <img class="d-block img-fluid" src="~/Images/rnd2.png" alt="End">
                 <div class="carousel-caption d-none d-md-block">
                     <h4>No more Couples</h4>
                 </div>

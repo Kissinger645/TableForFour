@@ -6,10 +6,23 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css" />
-
+    <script>
+        $(".carousel").on("touchstart", function (event) {
+            var xClick = event.originalEvent.touches[0].pageX;
+            $(this).one("touchmove", function (event) {
+                var xMove = event.originalEvent.touches[0].pageX;
+                if (Math.floor(xClick - xMove) > 5) {
+                    $(".carousel").carousel('next');
+                }
+                else if (Math.floor(xClick - xMove) < -5) {
+                    $(".carousel").carousel('prev');
+                }
+            });
+            $(".carousel").on("touchend", function () {
+                $(this).off("touchmove");
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,6 +54,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 </body>
 </html>
