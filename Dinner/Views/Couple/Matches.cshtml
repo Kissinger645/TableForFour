@@ -2,9 +2,9 @@
 @{
     ViewBag.Title = "Matches";
 }
-<div class="container">
+<div class="container-fluid">
 
-    <h3>These are your matches.</h3>
+    <h3 style="color:deeppink">These are your matches.</h3>
     <ul class="list-group">
         @foreach (var couple in ViewBag.Matches1)
         {
@@ -13,10 +13,9 @@
                  - <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a>
             </li>
             <li class="list-group-item">
-                @Html.ActionLink("Send Message", "Message", "Couple")
+                @Html.ActionLink("Send Message", "New", "Message", new { id = @couple.Second.UserName }, null)
                 - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
                 - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id }, null)
-                <a href="http://twitter.github.io/bootstrap/" class="btn bootpopup" title="This is title" target="popupModal2">Open modal</a>
             </li>
         }
 
@@ -27,7 +26,7 @@
                  - <a href="/c/@couple.First.UserName"> @couple.First.UserName</a>
             </li>
             <li class="list-group-item">
-                @Html.ActionLink("Send Message", "Message", "Couple")
+                @Html.ActionLink("Send Message", "New", "Message", new { id = @couple.First.UserName }, null)
                 - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
                 - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id}, null)
             </li>

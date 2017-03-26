@@ -82,8 +82,16 @@ namespace Dinner.Controllers
                 First = thisCouple,
                 Second = otherCouple
             };
-
             db.Dislikes.Add(dislike);
+
+            Messages dislikeMessage = new Messages
+            {
+                Created = DateTime.Now,
+                ToCouple = thisCouple.UserName,
+                Title = $"You disliked {otherCouple.UserName}"
+            };
+            db.Message.Add(dislikeMessage);
+            
             db.SaveChanges();
             var last = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
             return Redirect(last);

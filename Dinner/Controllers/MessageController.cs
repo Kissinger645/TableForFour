@@ -1,5 +1,6 @@
 ﻿using Dinner.Models;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -19,9 +20,28 @@ namespace Dinner.Controllers
             return View();
         }
 
-        public ActionResult NewMessage()
+        public ActionResult New(string id)
         {
+            ViewBag.UN = id;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult New(string message, string title, string id)
+        {
+            var user = User.Identity.GetUserName();
+            Messages newMess = new Messages
+            {
+                FromCouple = user,
+                ToCouple = id,
+                Title = title,
+                Message = message,
+                Created = DateTime.Now
+            };
+
+            db.Message.Add(newMess);
+            db.SaveChanges();
+            return RedirectToAction("Browse", "Home");
         }
 
         public ActionResult Delete(int? id)
