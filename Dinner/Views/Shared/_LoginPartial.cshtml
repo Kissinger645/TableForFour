@@ -10,6 +10,9 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li>@Html.ActionLink("Browse Couples", "Browse", "Home")</li>
+        <li>@Html.ActionLink("Messages", "List", "Message")</li>
+        <li>@Html.ActionLink("Matches", "Matches", "Couple")</li>
     </ul>
     }
 }

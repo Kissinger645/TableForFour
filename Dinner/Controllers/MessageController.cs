@@ -19,6 +19,7 @@ namespace Dinner.Controllers
             ViewBag.Messages = db.Message.Where(c => c.ToCouple == us).ToList();
             return View();
         }
+
         public ActionResult Check(int id)
         {
             var ourId = User.Identity.GetUserId();
