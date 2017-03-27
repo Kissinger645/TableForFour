@@ -5,33 +5,45 @@
 <div class="container-fluid">
 
     <h3 style="color:deeppink">These are your matches.</h3>
-    <ul class="list-group">
+
+    <ul class="media-list">
         @foreach (var couple in ViewBag.Matches1)
         {
-            <li class="list-group-item">
-                <img class="thumb" src="@couple.Second.Image.FilePath" width="80" height="80" />
-                 - <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a>
-            </li>
-            <li class="list-group-item">
-                @Html.ActionLink("Send Message", "New", "Message", new { id = @couple.Second.UserName }, null)
-                - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
-                - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id }, null)
+            <li class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="@couple.Second.Image.FilePath" alt="..." width="160" height="160">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a></h4>
+
+                    @Html.ActionLink("Send Message", "Check", "Message", new { id = @couple.Second.Id }, null)
+                    - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
+                    - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id }, null)
+                </div>
             </li>
         }
 
         @foreach (var couple in ViewBag.Matches2)
         {
-            <li class="list-group-item">
-                <img class="thumb" src="" width="80" height="80" />
-                 - <a href="/c/@couple.First.UserName"> @couple.First.UserName</a>
-            </li>
-            <li class="list-group-item">
-                @Html.ActionLink("Send Message", "New", "Message", new { id = @couple.First.UserName }, null)
-                - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
-                - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id}, null)
+            <li class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="@couple.First.Image.FilePath" alt="..." width="160" height="160">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/c/@couple.First.UserName"> @couple.First.UserName</a></h4>
+
+                    @Html.ActionLink("Send Message", "Check", "Message", new { id = @couple.First.Id }, null)
+                    - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
+                    - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id }, null)
+                </div>
             </li>
         }
     </ul>
+
     <p><a href="javascript:history.back()">Back</a></p>
     <h6>Restaurant suggestions powered by <a href="https://www.meetways.com/">Meetways</a></h6>
 </div>

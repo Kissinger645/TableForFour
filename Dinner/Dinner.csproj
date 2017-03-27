@@ -426,6 +426,7 @@
     <Content Include="Views\Couple\List.cshtml" />
     <Content Include="Views\Message\List.cshtml" />
     <Content Include="Views\Message\New.cshtml" />
+    <Content Include="Views\Message\Sorry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

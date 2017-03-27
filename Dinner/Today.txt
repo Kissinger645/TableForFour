@@ -2,19 +2,22 @@
 Usernames Couple1 email couple1@bk.com pass Pass!1
 
 ===Today I worked on
-
+==only send messages to matches
 
 ====
-add notifications when you make match, add like/dislike
+
 limit couples on distance
-https://www.opentable.com/g/south-carolina/greenville-restaurants
 
 add notifications when like/dislike on view page
 make phone # required on registration
 add dinner questions
-Add link to send message to matches
+
 Preview Profile pic before saving
 
+https://www.opentable.com/g/south-carolina/greenville-restaurants
+
+
+==Add link to send message to matches
 ==Added API
 ==removed disliked users from browse
 ==remove match and add dislike

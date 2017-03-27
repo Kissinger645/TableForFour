@@ -19,21 +19,39 @@ namespace Dinner.Controllers
             ViewBag.Messages = db.Message.Where(c => c.ToCouple == us).ToList();
             return View();
         }
-
-        public ActionResult New(string id)
+        public ActionResult Check(int id)
         {
-            ViewBag.UN = id;
+            var ourId = User.Identity.GetUserId();
+            var us = db.Couples.Where(c => c.CurrentUser == ourId).FirstOrDefault();
+            //Separating matches to know which is current user
+            bool list1 = db.Match.Where(c => c.First.Id == us.Id && c.Second.Id == id).Any();
+            bool list2 = db.Match.Where(c => c.Second.Id == us.Id && c.First.Id == id).Any();
+
+            if (list1 || list2 == true)
+            {
+                return RedirectToAction("New", "Message", new { id = id });
+            }
+
+            return RedirectToAction("Sorry", "Message");
+            
+        }
+
+        public ActionResult New(int id)
+        {
+            var otherCouple = db.Couples.Where(c => c.Id == id).FirstOrDefault().UserName;
+            ViewBag.UN = otherCouple;
             return View();
         }
 
         [HttpPost]
-        public ActionResult New(string message, string title, string id)
+        public ActionResult New(string message, string title, int id)
         {
             var user = User.Identity.GetUserName();
+            var otherCouple = db.Couples.Where(c => c.Id == id).FirstOrDefault();
             Messages newMess = new Messages
             {
                 FromCouple = user,
-                ToCouple = id,
+                ToCouple = otherCouple.UserName,
                 Title = title,
                 Message = message,
                 Created = DateTime.Now
@@ -42,6 +60,11 @@ namespace Dinner.Controllers
             db.Message.Add(newMess);
             db.SaveChanges();
             return RedirectToAction("Browse", "Home");
+        }
+
+        public ActionResult Sorry()
+        {
+            return View();
         }
 
         public ActionResult Delete(int? id)

@@ -35,3 +35,30 @@ $(".carousel").on("touchstart", function(event){
 });
 
 ===
+    <ul class="list-group">
+        @foreach (var couple in ViewBag.Matches1)
+        {
+            <li class="list-group-item">
+                <img class="thumb" src="@couple.Second.Image.FilePath" width="80" height="80" />
+                - <a href="/c/@couple.Second.UserName"> @couple.Second.UserName</a>
+            </li>
+            <li class="list-group-item">
+                @Html.ActionLink("Send Message", "New", "Message", new { id = @couple.Second.UserName }, null)
+                - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
+                - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id }, null)
+            </li>
+        }
+
+        @foreach (var couple in ViewBag.Matches2)
+        {
+            <li class="list-group-item">
+                <img class="thumb" src="@couple.First.Image.FilePath" width="80" height="80" />
+                - <a href="/c/@couple.First.UserName"> @couple.First.UserName</a>
+            </li>
+            <li class="list-group-item">
+                @Html.ActionLink("Send Message", "New", "Message", new { id = @couple.First.UserName }, null)
+                - <a href="@couple.Suggestions" target="_blank">Restaurants</a>
+                - @Html.ActionLink("Remove Match", "Unmatch", "Couple", new { id = @couple.Id }, null)
+            </li>
+        }
+    </ul>
