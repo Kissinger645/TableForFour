@@ -243,89 +243,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703091749462_InitialCreate.cs" />
-    <Compile Include="Migrations\201703091749462_InitialCreate.Designer.cs">
-      <DependentUpon>201703091749462_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703131543214_initial.cs" />
-    <Compile Include="Migrations\201703131543214_initial.Designer.cs">
-      <DependentUpon>201703131543214_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703131639490_couplechoices.cs" />
-    <Compile Include="Migrations\201703131639490_couplechoices.Designer.cs">
-      <DependentUpon>201703131639490_couplechoices.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703140145262_CoupleFields.cs" />
-    <Compile Include="Migrations\201703140145262_CoupleFields.Designer.cs">
-      <DependentUpon>201703140145262_CoupleFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703140205583_foods.cs" />
-    <Compile Include="Migrations\201703140205583_foods.Designer.cs">
-      <DependentUpon>201703140205583_foods.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703140213444_SexualOrientation.cs" />
-    <Compile Include="Migrations\201703140213444_SexualOrientation.Designer.cs">
-      <DependentUpon>201703140213444_SexualOrientation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703141316119_nickname.cs" />
-    <Compile Include="Migrations\201703141316119_nickname.Designer.cs">
-      <DependentUpon>201703141316119_nickname.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703141552533_food.cs" />
-    <Compile Include="Migrations\201703141552533_food.Designer.cs">
-      <DependentUpon>201703141552533_food.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703141633114_displaynames.cs" />
-    <Compile Include="Migrations\201703141633114_displaynames.Designer.cs">
-      <DependentUpon>201703141633114_displaynames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703142017546_userfk.cs" />
-    <Compile Include="Migrations\201703142017546_userfk.Designer.cs">
-      <DependentUpon>201703142017546_userfk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703150951225_pic.cs" />
-    <Compile Include="Migrations\201703150951225_pic.Designer.cs">
-      <DependentUpon>201703150951225_pic.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703151718432_userchanges.cs" />
-    <Compile Include="Migrations\201703151718432_userchanges.Designer.cs">
-      <DependentUpon>201703151718432_userchanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703152015256_newname.cs" />
-    <Compile Include="Migrations\201703152015256_newname.Designer.cs">
-      <DependentUpon>201703152015256_newname.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703160925597_addedLikes.cs" />
-    <Compile Include="Migrations\201703160925597_addedLikes.Designer.cs">
-      <DependentUpon>201703160925597_addedLikes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703160928171_addedDbSet.cs" />
-    <Compile Include="Migrations\201703160928171_addedDbSet.Designer.cs">
-      <DependentUpon>201703160928171_addedDbSet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703221735172_dislikes.cs" />
-    <Compile Include="Migrations\201703221735172_dislikes.Designer.cs">
-      <DependentUpon>201703221735172_dislikes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703221739406_dbsetDislikes.cs" />
-    <Compile Include="Migrations\201703221739406_dbsetDislikes.Designer.cs">
-      <DependentUpon>201703221739406_dbsetDislikes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703231551320_REmoveUserPhoto.cs" />
-    <Compile Include="Migrations\201703231551320_REmoveUserPhoto.Designer.cs">
-      <DependentUpon>201703231551320_REmoveUserPhoto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703232110098_DislikeCouple.cs" />
-    <Compile Include="Migrations\201703232110098_DislikeCouple.Designer.cs">
-      <DependentUpon>201703232110098_DislikeCouple.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703240242151_userToCouple.cs" />
-    <Compile Include="Migrations\201703240242151_userToCouple.Designer.cs">
-      <DependentUpon>201703240242151_userToCouple.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703261414507_Messages.cs" />
-    <Compile Include="Migrations\201703261414507_Messages.Designer.cs">
-      <DependentUpon>201703261414507_Messages.cs</DependentUpon>
+    <Compile Include="Migrations\201703272104238_initial.cs" />
+    <Compile Include="Migrations\201703272104238_initial.Designer.cs">
+      <DependentUpon>201703272104238_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -389,7 +309,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\XIndex.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -426,6 +346,7 @@
     <Content Include="Views\Message\List.cshtml" />
     <Content Include="Views\Message\New.cshtml" />
     <Content Include="Views\Message\Sorry.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
@@ -440,68 +361,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703091749462_InitialCreate.resx">
-      <DependentUpon>201703091749462_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703131543214_initial.resx">
-      <DependentUpon>201703131543214_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703131639490_couplechoices.resx">
-      <DependentUpon>201703131639490_couplechoices.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703140145262_CoupleFields.resx">
-      <DependentUpon>201703140145262_CoupleFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703140205583_foods.resx">
-      <DependentUpon>201703140205583_foods.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703140213444_SexualOrientation.resx">
-      <DependentUpon>201703140213444_SexualOrientation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703141316119_nickname.resx">
-      <DependentUpon>201703141316119_nickname.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703141552533_food.resx">
-      <DependentUpon>201703141552533_food.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703141633114_displaynames.resx">
-      <DependentUpon>201703141633114_displaynames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703142017546_userfk.resx">
-      <DependentUpon>201703142017546_userfk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703150951225_pic.resx">
-      <DependentUpon>201703150951225_pic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703151718432_userchanges.resx">
-      <DependentUpon>201703151718432_userchanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703152015256_newname.resx">
-      <DependentUpon>201703152015256_newname.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703160925597_addedLikes.resx">
-      <DependentUpon>201703160925597_addedLikes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703160928171_addedDbSet.resx">
-      <DependentUpon>201703160928171_addedDbSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703221735172_dislikes.resx">
-      <DependentUpon>201703221735172_dislikes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703221739406_dbsetDislikes.resx">
-      <DependentUpon>201703221739406_dbsetDislikes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703231551320_REmoveUserPhoto.resx">
-      <DependentUpon>201703231551320_REmoveUserPhoto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703232110098_DislikeCouple.resx">
-      <DependentUpon>201703232110098_DislikeCouple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703240242151_userToCouple.resx">
-      <DependentUpon>201703240242151_userToCouple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703261414507_Messages.resx">
-      <DependentUpon>201703261414507_Messages.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703272104238_initial.resx">
+      <DependentUpon>201703272104238_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

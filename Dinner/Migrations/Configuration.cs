@@ -10,7 +10,6 @@ namespace Dinner.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Dinner.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Dinner.Models.ApplicationDbContext context)

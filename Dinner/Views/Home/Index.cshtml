@@ -1,12 +1,24 @@
-﻿@model Dinner.Models.RegisterViewModel
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6"><img src="~/Images/rnd2.png" width="100%" /></div>
+        <div class="col-md-3"></div>
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6"><img src="~/Images/rnd2.png" width="100%" /></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-12"><h4 style="color:deeppink">Make your next night out a night to remember!</h4></div>
+        <p style="color:#E7DFDD" class="col-md-12">
+            Table For Four makes meeting new couples a little easier.
+            Browse through pictures of other couples and decide who you might enjoy meeting.  If they feel the
+            same way about you, you'll get a message and some restaurant suggestions so you can start planning.
+        </p>
 
-<div class="container-fluid">
-    <div class="col-md-3"></div>
-    <div class="col-md-6"><img src="~/Images/rnd2.png" width="100%" /></div>
-    <div class="col-md-3"></div>
-    <div class="col-md-12"><h4 style="color:deeppink">Make your next night out a night to remember!</h4></div>
-    <p style="color:#E7DFDD" class="col-md-12">Table For Four makes meeting new couples a little easier.  
-    Browse through pictures of other couples and decide who you might enjoy meeting.  If they feel the
-    same way about you, you'll get a message and some restaurant suggestions so you can start planning.</p>
-    
-</div>
+    </div>
+}
