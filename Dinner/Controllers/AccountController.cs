@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Dinner.Models;
+using Microsoft.ApplicationInsights;
 
 namespace Dinner.Controllers
 {
@@ -75,7 +76,18 @@ namespace Dinner.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            Microsoft.AspNet.Identity.Owin.SignInStatus result = new SignInStatus();
+            try
+            {
+                result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            }
+            catch (Exception ex)
+            {
+                TelemetryClient tClient = new TelemetryClient();
+                tClient.TrackException(ex);
+                throw ex;
+            }
+            
             switch (result)
             {
                 case SignInStatus.Success:

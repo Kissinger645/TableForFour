@@ -19,6 +19,12 @@ namespace Dinner.Controllers
             return View();
         }
 
+        public ActionResult Test()
+        {
+            ViewBag.Test = db.Couples.ToList();
+            return View();
+        }
+
         [Authorize]
         public ActionResult Browse()
         {

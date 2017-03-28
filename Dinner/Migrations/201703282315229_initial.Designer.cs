@@ -13,7 +13,7 @@ namespace Dinner.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201703272104238_initial"; }
+            get { return "201703282315229_initial"; }
         }
         
         string IMigrationMetadata.Source
