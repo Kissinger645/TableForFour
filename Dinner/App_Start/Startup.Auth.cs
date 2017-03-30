@@ -53,8 +53,18 @@ namespace Dinner
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1100124163467068",
+               appSecret: "2cd464e23ff6cb3ab9de5e8ab3cd603f");
 
-            
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "46934800264-hu7i3t4vsnno7lsj8n8d1mrpk5ug4m59.apps.googleusercontent.com",
+                ClientSecret = "sawKy1VYvVeZF13MXpbNZ3df"
+            });
+
+
+
         }
     }
 }

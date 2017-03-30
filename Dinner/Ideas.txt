@@ -1,8 +1,0 @@
-﻿Change the way the login looks, clarify FB login
-add custom exception error, employ try/catch
-
-show only certain ages or sexual preferencs
-delete account
-
-Enable Account recovery
-https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity

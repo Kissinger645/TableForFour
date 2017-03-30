@@ -11,8 +11,11 @@
                 <h5>FROM: @item.FromCouple - @item.Title</h5>
                 <p>@item.Message</p>
                 <p>@item.Created</p>
-                <p>@Html.ActionLink("Delete", "Delete", "Message", new { id = @item.Id }, null)</p>
+                <p>@Html.ActionLink("Respond", "Respond", "Message", new { id = @item.FromCouple }, null)
+                 - 
+                @Html.ActionLink("Delete", "Delete", "Message", new { id = @item.Id }, null)</p>
             </button>
         }
     </div>
+    <p><a href="javascript:history.back()">Back</a></p>
 </div>

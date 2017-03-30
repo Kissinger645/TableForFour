@@ -4,25 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script>
-        $(".carousel").on("touchstart", function (event) {
-            var xClick = event.originalEvent.touches[0].pageX;
-            $(this).one("touchmove", function (event) {
-                var xMove = event.originalEvent.touches[0].pageX;
-                if (Math.floor(xClick - xMove) > 5) {
-                    $(".carousel").carousel('next');
-                }
-                else if (Math.floor(xClick - xMove) < -5) {
-                    $(".carousel").carousel('prev');
-                }
-            });
-            $(".carousel").on("touchend", function () {
-                $(this).off("touchmove");
-            });
-        });
-    </script>
+    @Styles.Render("~/Content/font-awesome.css")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -48,7 +33,39 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - TableForFour</p>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <ul class="list-inline text-center">
+                            <li>
+                                <a href="http://www.twitter.com">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.facebook.com">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/Kissinger645/TableForFour">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 

@@ -1,6 +1,6 @@
 ﻿@model Dinner.Models.Couple
 <div class="container-fluid">
-    <h4>About us...</h4>
+    <h4 style="color:deeppink;">About us...</h4>
 
     @using (Html.BeginForm())
     {
@@ -71,22 +71,6 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.FavoriteFoods, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.FavoriteFoods, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PricePreference, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.PricePreference,
-                   new List<SelectListItem>
-                        {
-                        new SelectListItem { Value = "Not Set" , Text = "Price Preference" },
-                        new SelectListItem { Value = "$" , Text = "$" },
-                        new SelectListItem { Value = "$$" , Text = "$$" },
-                        new SelectListItem { Value = "$$$" , Text = "$$$" },
-                    },
-                    new { @class = "myselect" })
-                    @Html.ValidationMessageFor(model => model.PricePreference, "", new { @class = "text-danger" })
                 </div>
             </div>
 

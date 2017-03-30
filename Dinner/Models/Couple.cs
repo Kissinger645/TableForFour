@@ -47,6 +47,5 @@ namespace Dinner.Models
         [Display(Name = "We Prefer To Spend")]
         public string PricePreference { get; set; }
 
-        
     }
 }

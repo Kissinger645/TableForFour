@@ -17,6 +17,7 @@ namespace Dinner.Controllers
         {
             var us = User.Identity.GetUserName();
             ViewBag.Messages = db.Message.Where(c => c.ToCouple == us).ToList();
+            ViewBag.MsgCount = db.Message.Where(c => c.ToCouple == us).Count();
             return View();
         }
 
@@ -62,6 +63,34 @@ namespace Dinner.Controllers
             db.SaveChanges();
             return RedirectToAction("Browse", "Home");
         }
+
+        public ActionResult Respond(string id)
+        {
+            var otherCouple = db.Couples.Where(c => c.UserName == id).FirstOrDefault().UserName;
+            ViewBag.toThem = otherCouple;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Respond(string message, string title, string id)
+        {
+            var user = User.Identity.GetUserName();
+            var otherCouple = db.Couples.Where(c => c.UserName == id).FirstOrDefault();
+            Messages newMess = new Messages
+            {
+                FromCouple = user,
+                ToCouple = otherCouple.UserName,
+                Title = title,
+                Message = message,
+                Created = DateTime.Now
+            };
+
+            db.Message.Add(newMess);
+            db.SaveChanges();
+            return RedirectToAction("Browse", "Home");
+        }
+
+
 
         public ActionResult Sorry()
         {

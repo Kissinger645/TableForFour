@@ -29,6 +29,8 @@ namespace Dinner.Controllers
         // GET: Couple
         public ActionResult Index()
         {
+            var us = User.Identity.GetUserName();
+            ViewBag.MsgCount = db.Message.Where(c => c.ToCouple == us).Count();
             return View(db.Couples.ToList());
         }
 
@@ -37,7 +39,6 @@ namespace Dinner.Controllers
             var id = User.Identity.GetUserId();
             var us = db.Couples.Where(c =>c.CurrentUser == id).FirstOrDefault();
             ViewBag.Liked = db.Like.Where(c => c.First.Id == us.Id).ToList();
-            
             return View();
         }
 
@@ -84,14 +85,6 @@ namespace Dinner.Controllers
             };
             db.Dislikes.Add(dislike);
 
-            Messages dislikeMessage = new Messages
-            {
-                Created = DateTime.Now,
-                ToCouple = thisCouple.UserName,
-                Title = $"You disliked {otherCouple.UserName}"
-            };
-            db.Message.Add(dislikeMessage);
-            
             db.SaveChanges();
             var last = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
             return Redirect(last);
@@ -110,14 +103,6 @@ namespace Dinner.Controllers
             };
             db.Like.Add(like);
 
-            Messages likeMessage = new Messages
-            {
-                Created = DateTime.Now,
-                ToCouple = thisCouple.UserName,
-                Title = $"You liked {otherCouple.UserName}"
-            };
-            db.Message.Add(likeMessage);
-
             //Couples have liked each other, creates match and sends messages
             bool magic = db.Like.Where(c => c.First.Id == otherCouple.Id && c.Second.Id == thisCouple.Id).Any();
             if (magic == true)
@@ -131,12 +116,10 @@ namespace Dinner.Controllers
                 var z2 = otherCouple.ZipCode;
 
                 var mess1 = $"Congrats! You've made a Table For Four match with {theirName}. " +
-                $"You can reach them at {theirPhone}. " +
                 "The link below will show you some restaurants located between you. " +
                 $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d";
 
                 var mess2 = $"Congrats! You've made a Table For Four match with {ourName}. " +
-                $"You can reach them at {ourPhone}. " +
                 "The link below will show you some restaurants located between you. " +
                 $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d";
 

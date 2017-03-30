@@ -16,18 +16,17 @@ namespace Dinner.Controllers
 
         public ActionResult Index()
         {
+            var us = User.Identity.GetUserName();
+            ViewBag.MsgCount = db.Message.Where(c => c.ToCouple == us).Count();
             return View();
         }
 
-        public ActionResult Test()
-        {
-            ViewBag.Test = db.Couples.ToList();
-            return View();
-        }
 
         [Authorize]
         public ActionResult Browse()
         {
+            var us = User.Identity.GetUserName();
+            ViewBag.MsgCount = db.Message.Where(c => c.ToCouple == us).Count();
             var userId = User.Identity.GetUserId();
             var thisCouple = db.Couples.FirstOrDefault(c => c.CurrentUser == userId);
             var r = new Random();
@@ -49,5 +48,7 @@ namespace Dinner.Controllers
             ViewBag.AllCouples = list1.OrderBy(x => r.Next());
             return View();
         }
+
+       
     }
 }

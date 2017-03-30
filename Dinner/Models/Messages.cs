@@ -14,4 +14,5 @@ namespace Dinner.Models
         public string Message { get; set; }
         public DateTime Created { get; set; }
     }
+
 }
