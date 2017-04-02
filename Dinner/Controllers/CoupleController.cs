@@ -115,12 +115,12 @@ namespace Dinner.Controllers
                 var theirName = otherCouple.UserName;
                 var z2 = otherCouple.ZipCode;
 
-                var mess1 = $"Congrats! You've made a Table For Four match with {theirName}. " +
-                "The link below will show you some restaurants located between you. " +
+                var mess1 = $"Congrats! You've made a Table For Four match with {theirName}.  \n" +
+                "The link below will show you some restaurants located between you.  \n" +
                 $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d";
 
-                var mess2 = $"Congrats! You've made a Table For Four match with {ourName}. " +
-                "The link below will show you some restaurants located between you. " +
+                var mess2 = $"Congrats! You've made a Table For Four match with {ourName}.  \n" +
+                "The link below will show you some restaurants located between you.  \n" +
                 $"https://www.meetways.com/halfway/'{z1}'/'{z2}'/restaurant/d";
 
                 string AccountSid = ConfigurationManager.AppSettings["TwilioSID"];

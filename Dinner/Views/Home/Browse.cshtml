@@ -1,17 +1,16 @@
-﻿<script src="jquery.bcSwipe.js"></script>
-<div class="container-fluid">
+﻿<div class="container-fluid">
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img class="d-block img-fluid" src="~/Images/rnd.png" alt="Table For Four" />
+                <img class="center-block img-fluid" src="~/Images/rnd.png" alt="Table For Four" />
             </div>
 
             @foreach (var couple in ViewBag.AllCouples)
             {
                 <div class="item">
                     <a href="/c/@couple.UserName">
-                        <img class="d-block img-fluid"src="@couple.Image.FilePath" alt="@couple.UserName">
+                        <img class="center-block img-fluid"src="@couple.Image.FilePath" alt="@couple.UserName">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
                         <h3>
@@ -28,7 +27,7 @@
             }
 
             <div class="item">
-                <img class="d-block img-fluid" src="~/Images/rnd.png" alt="End">
+                <img class="center-block img-fluid" src="~/Images/rnd.png" alt="End">
                 <div class="carousel-caption d-none d-md-block">
                     <h4>No more Couples</h4>
                 </div>

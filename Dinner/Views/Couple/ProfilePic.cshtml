@@ -4,7 +4,7 @@
 }
 
 <div class="container-fluid">
-    <h3>Change Profile Pic</h3>
+    <h3 style="color:deeppink">Change Profile Pic</h3>
     <h6>For best results, resize image to 640X640 before uploading.</h6>
 
     @using (Html.BeginForm("Upload", "Couple", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -14,5 +14,6 @@
             <input type="submit" value="Set Profile Pic" class="btn btn-link" />
         </p>
     }
+
     
 </div>

@@ -7,12 +7,11 @@ using System.Web.Mvc;
 
 namespace Dinner.Controllers
 {
-
+    [Authorize]
     public class MessageController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [Authorize]
         public ActionResult List()
         {
             var us = User.Identity.GetUserName();

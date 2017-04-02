@@ -7,15 +7,39 @@
     <div class="list-group">
         @foreach (var item in ViewBag.Messages)
         {
-            <button type="button" class="list-group-item">
+            <button type="button" class="list-group-item" data-toggle="modal" data-target="#myModal-@item.Id">
                 <h5>FROM: @item.FromCouple - @item.Title</h5>
                 <p>@item.Message</p>
                 <p>@item.Created</p>
-                <p>@Html.ActionLink("Respond", "Respond", "Message", new { id = @item.FromCouple }, null)
-                 - 
-                @Html.ActionLink("Delete", "Delete", "Message", new { id = @item.Id }, null)</p>
+                
             </button>
+
+            <!-- Modal -->
+            <div id="myModal-@item.Id" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">@item.Title</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>@item.Message</p>
+                            <p>
+                                @Html.ActionLink("Respond", "Respond", "Message", new { id = @item.FromCouple }, null)
+                                -
+                                @Html.ActionLink("Delete", "Delete", "Message", new { id = @item.Id }, null)
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         }
+        <p><a href="javascript:history.back()">Back</a></p>
     </div>
-    <p><a href="javascript:history.back()">Back</a></p>
 </div>

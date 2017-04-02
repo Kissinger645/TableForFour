@@ -1099,6 +1099,7 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  color:black
 }
 a {
   color: #2a9fd6;
@@ -1124,7 +1125,7 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  width: 100%; /* use this, or not */
+  width: 90%; /* use this, or not */
   margin: auto;
   display: block;
   max-width: 100%;

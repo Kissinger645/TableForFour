@@ -20,5 +20,17 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 420px;
+    color: black;
+}
+/*.btn-info {
+    color: deeppink;
+    background-color:ghostwhite;
+    border-color: #9933cc;
+}*/
+@media only screen and (max-width: 420px) {
+
+    body {
+        font-size: 2em;
+    }
 }
